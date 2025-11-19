@@ -2,7 +2,8 @@ import {
   DemoHeader,
   DemoMessages,
   DemoProvider,
-} from "@/components/demo/animated-chat-demo";
+} from '@/components/demo/animated-chat-demo'
+import { SectionTag } from '@/components/ui/section-tag'
 
 const features = [
   {
@@ -37,12 +38,8 @@ export function BenefitsSection() {
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Header */}
         <div className="flex w-full flex-col items-center gap-2.5">
-          {/* Benefits Badge */}
-          <div className="rounded-lg bg-[#ededed] px-4 py-3">
-            <p className="text-sm font-medium leading-[1.6] tracking-[-0.28px] text-[#adadad]">
-              Benefits
-            </p>
-          </div>
+          {/* Benefits Tag */}
+          <SectionTag>Benefits</SectionTag>
 
           {/* Title */}
           <h2 className="text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">

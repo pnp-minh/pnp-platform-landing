@@ -4,7 +4,27 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Project colors */
+  /* Design System Colors from Figma */
+  /* Primary */
+  --color-primary: #64231d;
+  --color-primary-2: #ffbaa2;
+  --color-primary-3: #ffeee4;
+
+  /* Gray Scale */
+  --color-gray-1: #fcfcfc;
+  --color-gray-2: #f9f9f9;
+  --color-gray-3: #f0f0f0;
+  --color-gray-7: #cecece;
+  --color-gray-8: #bbbbbb;
+  --color-gray-9: #8d8d8d;
+  --color-gray-10: #838383;
+  --color-gray-11: #646464;
+  --color-gray-12: #202020;
+
+  /* Background */
+  --color-background-default: #fffaf6;
+
+  /* Legacy aliases (for backward compatibility) */
   --color-text-primary: #202020;
   --color-text-secondary: #838383;
   --color-border-default: #e0e0e0;

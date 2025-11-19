@@ -12,29 +12,31 @@ import { useState } from 'react'
 const faqs = [
   {
     id: '1',
-    question: '1. What exactly does Jay do?',
+    question: '1. What makes this AI Agent different from ChatGPT?',
     answer:
-      'Jay is an AI platform that instantly transforms your ideas, notes, or client messages into clear, structured creative briefs.',
+      'Jay is built specifically for agencies: templates, structure, brand intelligence, and automation.',
   },
   {
     id: '2',
-    question: '2. How is Jay different from regular AI chat tools?',
-    answer: 'Jay specializes in creating structured creative briefs, unlike general-purpose AI chat tools.',
+    question: '2. Does this work for all types of briefs?',
+    answer:
+      'Yes — creative, content, marketing, GTM, ads, social… You customize once → reuse forever. Our platform can also support multiple clients and brands. Each workspace is isolated with its own brand knowledge.',
   },
   {
     id: '3',
-    question: '3. What types of briefs can Jay generate?',
-    answer: 'Jay can generate various types of creative briefs tailored to your specific needs.',
+    question: '3. Is onboarding hard?',
+    answer: 'No. 5 minutes. Upload your brand, pick your templates → done.',
   },
   {
     id: '4',
-    question: '4. Can Jay handle vague or incomplete input?',
-    answer: 'Yes, Jay can work with vague input and help clarify and structure your ideas.',
+    question: '4. Can my whole team use the AI consultant?',
+    answer: 'Yes. Multi-user, shared brand context, workspace-level settings.',
   },
   {
     id: '5',
-    question: '5. Can I customize the brief format?',
-    answer: 'Yes, Jay allows you to customize the brief format to match your workflow.',
+    question: '5. Will this AI Agent replace my team?',
+    answer:
+      'No — it amplifies your team. Jay multiplies their output. Your team focuses on ideas, Jay handles the admin.',
   },
 ]
 

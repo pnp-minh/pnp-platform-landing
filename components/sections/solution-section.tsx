@@ -1,4 +1,5 @@
-import { Clock, User, Zap } from "lucide-react";
+import { Clock, User, Zap } from 'lucide-react'
+import { SectionTag } from '@/components/ui/section-tag'
 
 const benefits = [
   {
@@ -34,12 +35,8 @@ export function SolutionSection() {
         {/* Header */}
         <div className="flex w-full flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-2.5">
-            {/* Solution Badge */}
-            <div className="rounded-lg bg-[#ededed] px-4 py-3">
-              <p className="text-sm font-medium leading-[1.6] tracking-[-0.28px] text-[#adadad]">
-                Solution
-              </p>
-            </div>
+            {/* Solution Tag */}
+            <SectionTag>Solution</SectionTag>
 
             {/* Title */}
             <h2 className="max-w-[568px] text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
