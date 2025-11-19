@@ -119,6 +119,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
   const [activeCitation, setActiveCitation] = useState<number | null>(null);
   const [showInsights, setShowInsights] = useState(false);
   const [showPDFButton, setShowPDFButton] = useState(false);
+  const messageIdCounter = useRef(0);
   const MAX_VISIBLE_MESSAGES = 3;
 
   useEffect(() => {
@@ -128,11 +129,11 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
 
         await new Promise((resolve) => setTimeout(resolve, step.delay));
 
-        // Add new messages
-        const newMessages = step.messages.map((msg, idx) => ({
+        // Add new messages with unique IDs
+        const newMessages = step.messages.map((msg) => ({
           ...msg,
-          id: `${i}-${idx}`,
-          timestamp: Date.now() + idx,
+          id: `msg-${messageIdCounter.current++}`,
+          timestamp: Date.now(),
         }));
 
         setMessages((prev) => {
