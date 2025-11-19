@@ -70,7 +70,7 @@ export function BenefitsSection() {
                 <div className="flex flex-col gap-6">
                   <div className="flex gap-2">
                     <h3
-                      className={`font-medium leading-[1.1] text-text-secondary ${
+                      className={`font-medium leading-tight text-text-secondary ${
                         index === 0
                           ? "text-xl tracking-[-0.8px] md:text-2xl md:tracking-[-0.96px]"
                           : "text-xl tracking-[-0.8px] md:text-[22px] md:tracking-[-0.88px]"
@@ -79,7 +79,7 @@ export function BenefitsSection() {
                       {feature.number}
                     </h3>
                     <h3
-                      className={`font-medium leading-[1.1] text-text-primary ${
+                      className={`font-medium leading-tight text-text-primary ${
                         index === 0
                           ? "text-xl tracking-[-0.8px] md:text-2xl md:tracking-[-0.96px]"
                           : "text-xl tracking-[-0.8px] md:text-[22px] md:tracking-[-0.88px]"

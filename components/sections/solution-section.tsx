@@ -65,7 +65,7 @@ export function SolutionSection() {
                     <div className="flex h-6 w-6 items-center justify-center">
                       <Icon className="h-6 w-6 text-black" strokeWidth={2} />
                     </div>
-                    <h3 className="text-[18px] font-semibold leading-[1.5] tracking-[-0.342px] text-black">
+                    <h3 className="text-[18px] font-semibold leading-normal tracking-[-0.342px] text-black">
                       {benefit.title}
                     </h3>
                   </div>

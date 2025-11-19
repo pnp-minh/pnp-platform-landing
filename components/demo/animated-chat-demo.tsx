@@ -222,10 +222,10 @@ export function DemoHeader() {
       <div className="flex w-full flex-auto flex-col items-center gap-20 rounded-t-3xl bg-white p-8 shadow-[0px_2px_4px_0px_rgba(0,0,0,0.12)]">
         {/* Ready Message */}
         <div className="flex w-full max-w-[449px] flex-col gap-2 text-center">
-          <p className="text-lg font-semibold leading-[1.5] tracking-[-0.396px] text-[#646464]">
+          <p className="text-lg font-semibold leading-normal tracking-[-0.396px] text-[#646464]">
             Ready to start your brief
           </p>
-          <p className="text-base leading-[1.5] tracking-[-0.352px] text-[#838383]">
+          <p className="text-base leading-normal tracking-[-0.352px] text-[#838383]">
             Start typing to begin the conversation. Jay will help gather all the
             information needed for your project brief
           </p>
@@ -234,7 +234,7 @@ export function DemoHeader() {
         {/* Input Box */}
         <div className="flex w-full flex-col gap-2.5 rounded-2xl bg-[#f9f9f9] px-6 pb-4 pt-6">
           <div className="flex w-full flex-col gap-16">
-            <p className="text-base leading-[1.6] tracking-[-0.32px] text-[#a0a0a0]">
+            <p className="text-base leading-relaxed tracking-[-0.32px] text-[#a0a0a0]">
               Type your message... (Use @ to mention context)
             </p>
             <div className="flex w-full items-center justify-between">

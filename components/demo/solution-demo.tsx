@@ -35,7 +35,7 @@ export function SolutionDemo() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <div className="h-[15px] w-[15px] rounded-full bg-gray-7" />
-                <p className="text-[17px] font-semibold leading-[1.5] tracking-[-0.38px] text-gray-8">
+                <p className="text-[17px] font-semibold leading-normal tracking-[-0.38px] text-gray-8">
                   About the Client
                 </p>
               </div>
@@ -49,7 +49,7 @@ export function SolutionDemo() {
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <div className="h-[15px] w-[15px] rounded-full bg-primary-2" />
-                <p className="text-[17px] font-semibold leading-[1.5] tracking-[-0.38px] text-gray-12">
+                <p className="text-[17px] font-semibold leading-normal tracking-[-0.38px] text-gray-12">
                   About the Brand
                 </p>
               </div>
@@ -59,18 +59,18 @@ export function SolutionDemo() {
             {/* Badges */}
             <div className="mb-4 flex items-center gap-4">
               <div className="rounded bg-gray-3 px-[6px] py-[2px]">
-                <p className="text-[11px] font-medium leading-[1.5] tracking-[-0.24px] text-gray-9">
+                <p className="text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
                   Optional
                 </p>
               </div>
-              <p className="text-[11px] font-medium leading-[1.5] tracking-[-0.24px] text-gray-9">
+              <p className="text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
                 1 item extracted
               </p>
             </div>
 
             {/* Input Field */}
             <div className="mb-4 rounded bg-gray-3 px-[6px] py-1">
-              <p className="text-[11px] font-medium leading-[1.5] tracking-[-0.24px] text-gray-9">
+              <p className="text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
                 Brand story and background
               </p>
             </div>
@@ -80,17 +80,17 @@ export function SolutionDemo() {
               {/* Title */}
               <div className="flex items-center gap-2">
                 <FileText className="h-[26px] w-[26px] text-gray-12" />
-                <p className="text-[17px] font-semibold leading-[1.5] tracking-[-0.38px] text-gray-12">
+                <p className="text-[17px] font-semibold leading-normal tracking-[-0.38px] text-gray-12">
                   Extracted Content
                 </p>
               </div>
 
               {/* Content */}
               <div className="space-y-1">
-                <p className="text-[13px] font-medium leading-[1.5] tracking-[-0.28px] text-gray-12">
+                <p className="text-[13px] font-medium leading-normal tracking-[-0.28px] text-gray-12">
                   The Brand focus on...
                 </p>
-                <div className="flex items-center justify-between text-[11px] font-medium leading-[1.5] tracking-[-0.24px] text-gray-9">
+                <div className="flex items-center justify-between text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
                   <p>90% confidence</p>
                   <p>09:00:00 AM</p>
                 </div>
@@ -103,7 +103,7 @@ export function SolutionDemo() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <div className="h-[15px] w-[15px] rounded-full bg-gray-7" />
-                <p className="text-[17px] font-semibold leading-[1.5] tracking-[-0.38px] text-gray-8">
+                <p className="text-[17px] font-semibold leading-normal tracking-[-0.38px] text-gray-8">
                   Project Overview
                 </p>
               </div>
@@ -116,7 +116,7 @@ export function SolutionDemo() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <div className="h-[15px] w-[15px] rounded-full bg-gray-7" />
-                <p className="text-[17px] font-semibold leading-[1.5] tracking-[-0.38px] text-gray-11">
+                <p className="text-[17px] font-semibold leading-normal tracking-[-0.38px] text-gray-11">
                   Video Details
                 </p>
               </div>

@@ -53,7 +53,8 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(formSchema) as any,
     defaultValues: {
       name: '',
       company: '',
@@ -246,7 +247,7 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
 
         {/* Privacy Note */}
         <p className="mt-6 text-center text-xs leading-normal text-[#a0a0a0]">
-          Your information is secure. We'll only use it to personalize this demo experience.
+          Your information is secure. We&apos;ll only use it to personalize this demo experience.
         </p>
       </div>
     </div>

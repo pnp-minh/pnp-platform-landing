@@ -140,7 +140,7 @@ export function Footer() {
               <h3 className="text-lg font-bold leading-[1.4] text-gray-12">
                 Contact
               </h3>
-              <div className="flex flex-col gap-1 text-base leading-[1.5] text-gray-11">
+              <div className="flex flex-col gap-1 text-base leading-normal text-gray-11">
                 <p>Email: minh@paper-pens.com</p>
                 <p>Office: Ho Chi Minh City, Vietnam</p>
                 <p>Mobile: 01234567890</p>

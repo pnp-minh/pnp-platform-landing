@@ -1,5 +1,5 @@
-import { SectionTag } from "@/components/ui/section-tag";
 import { BriefTemplates } from "@/components/demo/brief-templates";
+import { SectionTag } from "@/components/ui/section-tag";
 
 export function PlatformSection() {
   return (
@@ -8,14 +8,9 @@ export function PlatformSection() {
       className="flex items-center justify-center bg-white px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:py-[60px]"
     >
       <div className="flex w-full max-w-[1280px] flex-col items-center">
-        <div className="flex w-full flex-col gap-10 rounded-[48px] border border-border-default p-8 md:gap-10 md:p-12 lg:p-[60px]">
-          {/* Template Cards */}
-          <div className="relative min-h-[500px] w-full overflow-hidden rounded-2xl md:min-h-[550px] lg:min-h-[600px]">
-            <BriefTemplates />
-          </div>
-
+        <div className="flex w-full flex-col gap-10 rounded-[48px] border border-border-default py-8 md:gap-10 md:py-12 lg:py-[60px]">
           {/* Content */}
-          <div className="flex w-full flex-col items-start gap-2.5">
+          <div className="flex w-full flex-col items-start gap-2.5 px-8 md:px-12 lg:px-[60px]">
             {/* Section Tag */}
             <SectionTag>PNP Platform</SectionTag>
 
@@ -28,11 +23,11 @@ export function PlatformSection() {
 
               {/* Right: Description */}
               <div className="flex w-full flex-col gap-2.5 pt-0 lg:w-[459px] lg:pt-3">
-                <h3 className="font-sans text-lg font-semibold leading-[1.6] text-gray-12">
-                  Agencies' fastest route to transforming raw brand data into
+                <h3 className="font-sans text-lg font-semibold leading-relaxed text-gray-12">
+                  Agencies&apos; fastest route to transforming raw brand data into
                   ready-to-use briefs.
                 </h3>
-                <p className="text-base leading-[1.5] text-gray-11">
+                <p className="text-base leading-normal text-gray-11">
                   This AI consultant reads everything you throw at it, brand
                   documents, websites, files, chats, then turns that chaos into
                   clean, structured, on-brand briefs in seconds. No more slow
@@ -41,6 +36,11 @@ export function PlatformSection() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Template Cards */}
+          <div className="relative min-h-[500px] w-full overflow-hidden md:min-h-[550px] lg:min-h-[600px]">
+            <BriefTemplates />
           </div>
         </div>
       </div>

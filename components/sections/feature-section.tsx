@@ -17,10 +17,10 @@ export function FeatureSection() {
             {/* Header */}
             <div className="flex items-start justify-between gap-8 md:gap-20">
               <div className="flex flex-1 flex-col gap-[11px]">
-                <h3 className="font-sans text-lg font-bold leading-[1.5] tracking-[-0.44px] text-gray-12 md:text-[20px]">
+                <h3 className="font-sans text-lg font-bold leading-normal tracking-[-0.44px] text-gray-12 md:text-[20px]">
                   Configure Your Brief
                 </h3>
-                <p className="text-xs leading-[1.6] tracking-[-0.28px] text-gray-9 md:text-[14px]">
+                <p className="text-xs leading-relaxed tracking-[-0.28px] text-gray-9 md:text-[14px]">
                   Set up your brief with title and Brand Intelligence
                 </p>
               </div>
@@ -33,7 +33,7 @@ export function FeatureSection() {
             <div className="flex flex-col gap-4">
               {/* Brief Title */}
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold leading-[1.5] tracking-[-0.352px] text-gray-11 md:text-base">
+                <label className="text-sm font-semibold leading-normal tracking-[-0.352px] text-gray-11 md:text-base">
                   Brief Title
                 </label>
                 <div className="flex items-center gap-2.5 rounded-lg border border-gray-3 bg-white px-3 py-4">
@@ -43,7 +43,7 @@ export function FeatureSection() {
 
               {/* Brand Intelligence Context */}
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold leading-[1.5] tracking-[-0.352px] text-gray-11 md:text-base">
+                <label className="text-sm font-semibold leading-normal tracking-[-0.352px] text-gray-11 md:text-base">
                   Brand Intelligence Context
                 </label>
                 <div className="flex h-[112px] items-center justify-center rounded-lg border border-gray-3 bg-white px-3 py-2.5">
@@ -60,7 +60,7 @@ export function FeatureSection() {
               <div className="relative">
                 <button className="flex h-10 items-center gap-2 rounded-lg bg-gray-3 px-3 py-3">
                   <Plus className="h-4 w-4 text-gray-11" />
-                  <span className="text-base font-semibold leading-[1.5] tracking-[-0.352px] text-gray-11">
+                  <span className="text-base font-semibold leading-normal tracking-[-0.352px] text-gray-11">
                     Add context
                   </span>
                 </button>
@@ -71,10 +71,10 @@ export function FeatureSection() {
                   <div className="flex items-center gap-2">
                     <Lightbulb className="h-4 w-4 text-gray-11" />
                     <div className="flex w-[100px] flex-col gap-px">
-                      <p className="text-xs font-semibold leading-[1.5] tracking-[-0.264px] text-gray-12">
+                      <p className="text-xs font-semibold leading-normal tracking-[-0.264px] text-gray-12">
                         Add insight
                       </p>
-                      <p className="text-xs leading-[1.6] tracking-[-0.24px] text-gray-9">
+                      <p className="text-xs leading-relaxed tracking-[-0.24px] text-gray-9">
                         Select categories
                       </p>
                     </div>
@@ -87,10 +87,10 @@ export function FeatureSection() {
                   <div className="flex items-center gap-2">
                     <BookMarked className="h-4 w-4 text-gray-11" />
                     <div className="flex w-[140px] flex-col gap-px">
-                      <p className="text-xs font-semibold leading-[1.5] tracking-[-0.264px] text-gray-12">
+                      <p className="text-xs font-semibold leading-normal tracking-[-0.264px] text-gray-12">
                         Add knowledge
                       </p>
-                      <p className="text-xs leading-[1.6] tracking-[-0.24px] text-gray-9">
+                      <p className="text-xs leading-relaxed tracking-[-0.24px] text-gray-9">
                         Select knowledge entries
                       </p>
                     </div>
@@ -99,7 +99,7 @@ export function FeatureSection() {
               </div>
 
               <button className="flex h-10 items-center justify-center rounded-lg bg-primary-1 px-4 py-3">
-                <span className="text-base font-semibold leading-[1.5] tracking-[-0.352px] text-white">
+                <span className="text-base font-semibold leading-normal tracking-[-0.352px] text-white">
                   Save Configuration
                 </span>
               </button>
@@ -117,10 +117,10 @@ export function FeatureSection() {
           </div>
 
           <div className="flex flex-col gap-2.5">
-            <h3 className="font-sans text-lg font-semibold leading-[1.6] text-gray-12">
+            <h3 className="font-sans text-lg font-semibold leading-relaxed text-gray-12">
               Agencies bleed hours on tasks
             </h3>
-            <p className="text-base leading-[1.6] text-gray-11">
+            <p className="text-base leading-relaxed text-gray-11">
               From rewriting unclear client inputs to aligning teams on brand
               voice, onboarding new members, manually producing briefs, and
               fixing miscommunications, busywork piles up fast. AI Agent stops
