@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ArrowRight, Check, FileText } from "lucide-react";
 
 const briefTemplates = [
@@ -47,25 +48,53 @@ const briefTemplates = [
   },
 ];
 
+// Staggered animation for cards - center card first, then sides
+const cardVariants = {
+  hidden: (index: number) => ({
+    opacity: 0,
+    y: 60,
+    scale: 0.95,
+  }),
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.4, 0, 0.2, 1] as any,
+      // Center card (index 1) appears first (0ms delay)
+      // Side cards (index 0, 2) appear 200ms later
+      delay: index === 1 ? 0 : 0.2,
+    },
+  }),
+};
+
 export function BriefTemplates() {
   return (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden md:overflow-visible">
       {/* Cards Container */}
       <div className="relative flex w-full items-center justify-center gap-3 py-8 md:items-start md:gap-6 md:py-10 lg:gap-8">
         {briefTemplates.map((brief, index) => (
-          <div
+          <motion.div
             key={brief.id}
-            className={`flex w-full flex-shrink-0 flex-col gap-6 border border-gray-3 bg-white p-6 shadow-sm transition-all md:min-w-0 md:max-w-[340px] md:gap-9 md:p-9 lg:max-w-[370px] ${
+            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={cardVariants}
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3 }}
+            className={`flex w-full flex-shrink-0 flex-col gap-6 border border-gray-3 bg-white p-6 shadow-sm md:min-w-0 md:max-w-[340px] md:gap-9 md:p-9 lg:max-w-[370px] ${
               index === 1
                 ? "relative z-10 min-w-[280px] max-w-[320px] rounded-3xl md:mx-0"
                 : "relative min-w-[240px] max-w-[280px] opacity-60 md:min-w-0 md:max-w-[340px] md:opacity-100"
             } ${
               index === 0
-                ? "mt-6 rounded-3xl md:mt-10 md:opacity-90 lg:mt-8"
+                ? "mt-6 rounded-r-3xl rounded-bl-3xl rounded-tl-none md:mt-10 md:rounded-3xl md:opacity-90 lg:mt-8"
                 : ""
             } ${
               index === 2
-                ? "mt-6 rounded-3xl  md:mt-10 md:opacity-90 lg:mt-8"
+                ? "mt-6 rounded-l-3xl rounded-br-3xl rounded-tr-none md:mt-10 md:rounded-3xl md:opacity-90 lg:mt-8"
                 : ""
             }`}
           >
@@ -140,16 +169,26 @@ export function BriefTemplates() {
 
             {/* Arrow Button */}
             <div className="mt-auto flex justify-end">
-              <button className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-1 transition-opacity hover:opacity-90">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-1 transition-opacity hover:opacity-90"
+              >
                 <ArrowRight className="h-5 w-5 text-white" strokeWidth={2.5} />
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-b from-transparent via-white/50 to-white" />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-b from-transparent via-white/50 to-white"
+      />
     </div>
   );
 }
