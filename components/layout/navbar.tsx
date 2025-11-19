@@ -10,16 +10,19 @@ export function Navbar() {
 
       {/* Navigation Links - Center on Desktop */}
       <div className="ml-auto flex items-center gap-6 text-base font-medium leading-normal tracking-[-0.48px] text-black lg:col-start-2 lg:ml-0 lg:justify-center">
-        <a href="#pain-points" className="transition-colors hover:text-[#646464]">
-          Pain Points
+        <a href="#platform" className="transition-colors hover:text-gray-11">
+          Platform
         </a>
-        <a href="#benefits" className="transition-colors hover:text-[#646464]">
+        <a href="#feature" className="transition-colors hover:text-gray-11">
+          How It Works
+        </a>
+        <a href="#benefits" className="transition-colors hover:text-gray-11">
           Benefits
         </a>
-        <a href="#solution" className="transition-colors hover:text-[#646464]">
+        <a href="#solution" className="transition-colors hover:text-gray-11">
           Solution
         </a>
-        <a href="#faqs" className="transition-colors hover:text-[#646464]">
+        <a href="#faqs" className="transition-colors hover:text-gray-11">
           FAQs
         </a>
       </div>

@@ -1,9 +1,5 @@
-import {
-  DemoHeader,
-  DemoMessages,
-  DemoProvider,
-} from '@/components/demo/animated-chat-demo'
-import { SectionTag } from '@/components/ui/section-tag'
+import { DemoHeader, DemoProvider } from "@/components/demo/animated-chat-demo";
+import { SectionTag } from "@/components/ui/section-tag";
 
 const features = [
   {
@@ -51,7 +47,7 @@ export function BenefitsSection() {
         <div className="flex w-full flex-col gap-6">
           {/* UI Preview Card */}
           <DemoProvider>
-            <div className="flex w-full flex-col rounded-3xl bg-[#f9f9f9] md:min-h-[500px] lg:h-[500px] lg:flex-row lg:items-center lg:justify-center lg:gap-[182px] lg:overflow-hidden">
+            <div className="flex w-full flex-col rounded-3xl bg-primary-3 md:min-h-[500px] lg:h-[500px] lg:flex-row lg:items-center lg:justify-center lg:gap-[182px] lg:overflow-hidden">
               {/* Left Side - Demo Header and Container */}
               <div className="flex h-full w-full flex-col gap-6 p-6 md:gap-8 md:p-10 lg:w-[521px] lg:shrink-0 lg:justify-center lg:p-0">
                 <DemoHeader />
@@ -59,7 +55,7 @@ export function BenefitsSection() {
 
               {/* Right Side - Animated Chat Messages */}
               <div className="flex w-full flex-col items-end justify-center gap-6 p-6 md:gap-8 md:p-8 lg:w-[457px] lg:shrink-0 lg:p-0">
-                <DemoMessages />
+                {/* <DemoMessages /> */}
               </div>
             </div>
           </DemoProvider>
@@ -69,7 +65,7 @@ export function BenefitsSection() {
             {features.map((feature, index) => (
               <div
                 key={feature.id}
-                className="flex w-full flex-col rounded-3xl bg-[#f9f9f9] p-6 lg:w-[411px]"
+                className="flex w-full flex-col rounded-3xl bg-gray-2 p-6 lg:w-[411px]"
               >
                 <div className="flex flex-col gap-6">
                   <div className="flex gap-2">
@@ -92,7 +88,7 @@ export function BenefitsSection() {
                       {feature.title}
                     </h3>
                   </div>
-                  <p className="text-sm leading-[1.4] text-[#646464] md:text-base">
+                  <p className="text-sm leading-[1.4] text-gray-11 md:text-base">
                     {feature.description}
                   </p>
                 </div>

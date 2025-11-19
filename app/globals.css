@@ -6,7 +6,7 @@
 @theme inline {
   /* Design System Colors from Figma */
   /* Primary */
-  --color-primary: #64231d;
+  --color-primary-1: #64231d;
   --color-primary-2: #ffbaa2;
   --color-primary-3: #ffeee4;
 
@@ -24,9 +24,11 @@
   /* Background */
   --color-background-default: #fffaf6;
 
-  /* Legacy aliases (for backward compatibility) */
+  /* Text Colors */
   --color-text-primary: #202020;
   --color-text-secondary: #838383;
+
+  /* Border */
   --color-border-default: #e0e0e0;
 
   /* Shadcn colors */
@@ -78,9 +80,20 @@ body {
 }
 
 /* Headings use Source Serif */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif), Georgia, serif;
   font-weight: 600;
+  font-style: normal;
+}
+
+/* Allow utility classes to override heading font family */
+.font-sans {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif !important;
 }
 
 :root {
@@ -91,7 +104,7 @@ h1, h2, h3, h4, h5, h6 {
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: #64231d;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);

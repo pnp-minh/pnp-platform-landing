@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
-import { Source_Serif_4, Inter } from "next/font/google";
-import "./globals.css";
-import { PostHogProvider } from "./providers";
 import PostHogPageView from "@/components/PostHogPageView";
 import { Navbar } from "@/components/layout/navbar";
+import type { Metadata } from "next";
+import { Inter, Source_Serif_4 } from "next/font/google";
+import "./globals.css";
+import { PostHogProvider } from "./providers";
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "600"],
 });
 
 const inter = Inter({
@@ -29,9 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} ${sourceSerif.variable} antialiased`}
-      >
+      <body className={`${inter.variable} ${sourceSerif.variable} antialiased`}>
         <PostHogProvider>
           <PostHogPageView />
           <Navbar />

@@ -1,5 +1,7 @@
-import { Clock, User, Zap } from 'lucide-react'
-import { SectionTag } from '@/components/ui/section-tag'
+import { SectionTag } from "@/components/ui/section-tag";
+import { Clock, User, Zap } from "lucide-react";
+import { Button } from "../ui/button";
+import { SolutionDemo } from "@/components/demo/solution-demo";
 
 const benefits = [
   {
@@ -45,15 +47,13 @@ export function SolutionSection() {
           </div>
 
           {/* CTA Button */}
-          <button className="rounded-lg bg-[#161617] px-4 py-2.5 text-base font-medium text-white transition-colors hover:bg-black">
-            Test & Help Shape Us
-          </button>
+          <Button variant="default">Test & Help Shape Us</Button>
         </div>
 
         {/* Content Grid */}
-        <div className="flex w-full flex-col items-start gap-6 lg:flex-row">
+        <div className="flex w-full flex-col items-center gap-8 xl:flex-row xl:items-start xl:gap-6">
           {/* Benefits Cards */}
-          <div className="flex w-full flex-col gap-5 lg:w-[411px]">
+          <div className="flex w-full flex-col gap-5 xl:w-[411px]">
             {benefits.map((benefit) => {
               const Icon = benefit.icon;
               return (
@@ -78,15 +78,8 @@ export function SolutionSection() {
           </div>
 
           {/* Demo Preview */}
-          <div className="relative h-[300px] w-full overflow-hidden rounded-3xl bg-[#cdcdcd] md:h-[400px] lg:h-[499px] lg:w-[845px]">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-center text-sm text-gray-600">
-                Demo Preview Image
-                <br />
-                <span className="text-xs">(Replace with actual image)</span>
-              </p>
-            </div>
-            {/* TODO: Replace with actual demo image */}
+          <div className="h-[400px] w-full md:h-[500px] xl:h-[499px] xl:w-[845px]">
+            <SolutionDemo />
           </div>
         </div>
       </div>
