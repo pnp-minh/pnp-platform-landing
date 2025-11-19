@@ -1,22 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
+  buttonHover,
   drawLine,
+  heroCTA,
   heroHeading,
   heroSubheading,
-  heroCTA,
   staggerContainer,
   staggerItem,
-  buttonHover,
 } from "@/lib/animations/variants";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
     <section className="flex min-h-[calc(100vh-60px)] items-center justify-center bg-[#FFFAF6] px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:py-[60px]">
-      <div className="relative flex w-full max-w-[1280px] items-center justify-center py-8 md:py-14 lg:py-20">
+      <div className="relative flex w-full max-w-[1280px] items-center justify-center py-8 md:py-14 lg:py-28">
         {/* Decorative Elements - Left Side */}
         <motion.div
           className="absolute left-0 top-0 z-0 flex h-full flex-col items-center justify-between"
