@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowRight, Check, FileText } from "lucide-react";
 
 const briefTemplates = [
@@ -48,42 +45,14 @@ const briefTemplates = [
   },
 ];
 
-// Staggered animation for cards - center card first, then sides
-const cardVariants = {
-  hidden: (index: number) => ({
-    opacity: 0,
-    y: 40,
-    scale: 0.97,
-  }),
-  visible: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 1.0,
-      ease: [0.4, 0, 0.2, 1] as any,
-      // Center card (index 1) appears first (300ms delay)
-      // Side cards (index 0, 2) appear 400ms later
-      delay: index === 1 ? 0.3 : 0.7,
-    },
-  }),
-};
-
 export function BriefTemplates() {
   return (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden md:overflow-visible">
       {/* Cards Container */}
       <div className="relative flex w-full items-center justify-center gap-3 py-8 md:items-start md:gap-6 md:py-10 lg:gap-8">
         {briefTemplates.map((brief, index) => (
-          <motion.div
+          <div
             key={brief.id}
-            custom={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={cardVariants}
-            whileHover={{ y: -8 }}
-            transition={{ duration: 0.3 }}
             className={`flex w-full flex-shrink-0 flex-col gap-6 border border-gray-3 bg-white p-6 shadow-sm md:min-w-0 md:max-w-[340px] md:gap-9 md:p-9 lg:max-w-[370px] ${
               index === 1
                 ? "relative z-10 min-w-[280px] max-w-[320px] rounded-3xl md:mx-0"
@@ -169,26 +138,16 @@ export function BriefTemplates() {
 
             {/* Arrow Button */}
             <div className="mt-auto flex justify-end">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-1 transition-opacity hover:opacity-90"
-              >
+              <button className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-1 transition-opacity hover:opacity-90">
                 <ArrowRight className="h-5 w-5 text-white" strokeWidth={2.5} />
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
       {/* Bottom Gradient Fade */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-b from-transparent via-white/50 to-white"
-      />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-b from-transparent via-white/50 to-white" />
     </div>
   );
 }

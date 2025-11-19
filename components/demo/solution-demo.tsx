@@ -1,6 +1,48 @@
 "use client";
 
 import { ChevronDown, ChevronUp, FileText } from "lucide-react";
+import { motion } from "framer-motion";
+
+// Different animation for each section card - creates organic, premium feel
+const sectionVariants = [
+  // Section 1 (top): Fade down from above
+  {
+    hidden: { opacity: 0, y: -20, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 1.0, ease: [0.4, 0, 0.2, 1] as any, delay: 0 },
+    },
+  },
+  // Section 2 (expanded/highlighted): Scale up (premium hero moment)
+  {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1.1, ease: [0.4, 0, 0.2, 1] as any, delay: 0.2 },
+    },
+  },
+  // Section 3: Fade left (from right side)
+  {
+    hidden: { opacity: 0, x: 30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.0, ease: [0.4, 0, 0.2, 1] as any, delay: 0.4 },
+    },
+  },
+  // Section 4 (bottom): Fade up from below with opacity
+  {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 0.6, // matches the original opacity-60 styling
+      y: 0,
+      transition: { duration: 1.0, ease: [0.4, 0, 0.2, 1] as any, delay: 0.6 },
+    },
+  },
+];
 
 export function SolutionDemo() {
   return (
@@ -31,7 +73,13 @@ export function SolutionDemo() {
       <div className="relative flex h-full w-full items-center justify-center p-4 md:p-6 lg:items-center lg:justify-center lg:p-8">
         <div className="relative w-full max-w-[540px] scale-75 md:scale-90 lg:scale-100">
           {/* Section 1: About the Client - Collapsed */}
-          <div className="mb-3 ml-[8%] mr-[-2%] rounded-2xl bg-white px-6 py-4 shadow-sm md:mb-4 md:ml-[15%] md:mr-[-4%] md:rounded-[26px] md:px-9 md:py-[26px] lg:ml-[18%] lg:mr-[-8%]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={sectionVariants[0]}
+            className="mb-3 ml-[8%] mr-[-2%] rounded-2xl bg-white px-6 py-4 shadow-sm md:mb-4 md:ml-[15%] md:mr-[-4%] md:rounded-[26px] md:px-9 md:py-[26px] lg:ml-[18%] lg:mr-[-8%]"
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <div className="h-[15px] w-[15px] rounded-full bg-gray-7" />
@@ -41,10 +89,16 @@ export function SolutionDemo() {
               </div>
               <ChevronDown className="h-[17px] w-[17px] text-gray-8" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Section 2: About the Brand - Expanded */}
-          <div className="mb-3 ml-[4%] mr-[-1%] rounded-2xl bg-gray-1 px-6 py-6 shadow-lg md:mb-4 md:ml-[10%] md:mr-[-3%] md:rounded-[26px] md:px-9 md:py-9 lg:ml-[12%] lg:mr-[-4%]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={sectionVariants[1]}
+            className="mb-3 ml-[4%] mr-[-1%] rounded-2xl bg-gray-1 px-6 py-6 shadow-lg md:mb-4 md:ml-[10%] md:mr-[-3%] md:rounded-[26px] md:px-9 md:py-9 lg:ml-[12%] lg:mr-[-4%]"
+          >
             {/* Header */}
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-5">
@@ -96,10 +150,16 @@ export function SolutionDemo() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Section 3: Project Overview - Collapsed */}
-          <div className="mb-3 ml-[8%] mr-[-2%] rounded-2xl bg-white px-6 py-4 shadow-sm md:mb-4 md:ml-[15%] md:mr-[-4%] md:rounded-[26px] md:px-9 md:py-[26px] lg:ml-[18%] lg:mr-[-6%]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={sectionVariants[2]}
+            className="mb-3 ml-[8%] mr-[-2%] rounded-2xl bg-white px-6 py-4 shadow-sm md:mb-4 md:ml-[15%] md:mr-[-4%] md:rounded-[26px] md:px-9 md:py-[26px] lg:ml-[18%] lg:mr-[-6%]"
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <div className="h-[15px] w-[15px] rounded-full bg-gray-7" />
@@ -109,10 +169,16 @@ export function SolutionDemo() {
               </div>
               <ChevronDown className="h-[17px] w-[17px] text-gray-8" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Section 4: Video Details - Collapsed (Partially visible) */}
-          <div className="ml-[10%] mr-[-3%] rounded-2xl bg-white px-6 py-4 shadow-sm opacity-60 md:ml-[18%] md:mr-[-6%] md:rounded-[26px] md:px-9 md:py-[26px] lg:ml-[22%] lg:mr-[-10%]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={sectionVariants[3]}
+            className="ml-[10%] mr-[-3%] rounded-2xl bg-white px-6 py-4 shadow-sm md:ml-[18%] md:mr-[-6%] md:rounded-[26px] md:px-9 md:py-[26px] lg:ml-[22%] lg:mr-[-10%]"
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <div className="h-[15px] w-[15px] rounded-full bg-gray-7" />
@@ -122,7 +188,7 @@ export function SolutionDemo() {
               </div>
               <ChevronDown className="h-[17px] w-[17px] text-gray-11" />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

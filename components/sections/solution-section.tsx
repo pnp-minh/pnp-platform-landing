@@ -1,10 +1,7 @@
-"use client";
-
 import { SectionTag } from "@/components/ui/section-tag";
 import { Clock, User, Zap } from "lucide-react";
 import { Button } from "../ui/button";
 import { SolutionDemo } from "@/components/demo/solution-demo";
-import { AnimatedSection } from "@/components/animated/AnimatedSection";
 
 const benefits = [
   {
@@ -81,13 +78,9 @@ export function SolutionSection() {
           </div>
 
           {/* Demo Preview */}
-          <AnimatedSection
-            variant="fadeLeft"
-            threshold={0.2}
-            className="h-[400px] w-full md:h-[500px] xl:h-[499px] xl:w-[845px]"
-          >
+          <div className="h-[400px] w-full md:h-[500px] xl:h-[499px] xl:w-[845px]">
             <SolutionDemo />
-          </AnimatedSection>
+          </div>
         </div>
       </div>
     </section>

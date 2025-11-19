@@ -1,5 +1,8 @@
+"use client";
+
 import { X, Plus, Lightbulb, BookMarked } from "lucide-react";
 import { SectionTag } from "@/components/ui/section-tag";
+import { AnimatedSection } from "@/components/animated/AnimatedSection";
 
 export function FeatureSection() {
   return (
@@ -9,7 +12,7 @@ export function FeatureSection() {
     >
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Content */}
-        <div className="flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-6">
+        <AnimatedSection variant="fadeUp" threshold={0.2} className="flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-6">
         {/* Left Card - Configure Brief Demo */}
         <div className="relative h-[580px] w-full overflow-visible rounded-3xl bg-primary-3 md:h-[700px] lg:w-[628px]">
           {/* Main Configuration Card */}
@@ -129,7 +132,7 @@ export function FeatureSection() {
             </p>
           </div>
         </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );
