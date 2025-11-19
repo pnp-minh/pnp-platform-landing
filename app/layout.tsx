@@ -1,16 +1,16 @@
 import PostHogPageView from "@/components/PostHogPageView";
 import { Navbar } from "@/components/layout/navbar";
+import "@/lib/animations/performance.css";
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import "@/lib/animations/performance.css";
 import { PostHogProvider } from "./providers";
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "600"],
+  weight: ["400", "500", "600"],
 });
 
 const inter = Inter({

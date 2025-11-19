@@ -22,7 +22,7 @@ export function Navbar() {
       {/* Logo - Left */}
       <div className="flex items-center justify-start gap-2">
         <p className="text-2xl font-semibold leading-normal tracking-[-0.72px] text-black">
-          LogoPlatform©
+          Primer
         </p>
       </div>
 

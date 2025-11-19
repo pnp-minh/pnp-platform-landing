@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -10,16 +9,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const waitlistSchema = z.object({
   fullName: z.string().min(2, {
     message: "Name must be at least 2 characters.",
-  }),
-  phone: z.string().min(10, {
-    message: "Please enter a valid phone number.",
   }),
   email: z.string().email({
     message: "Please enter a valid email address.",
@@ -33,7 +30,6 @@ export function Footer() {
     resolver: zodResolver(waitlistSchema),
     defaultValues: {
       fullName: "",
-      phone: "",
       email: "",
     },
   });
@@ -48,19 +44,22 @@ export function Footer() {
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-16 lg:gap-[90px]">
         {/* Waitlist Form Section */}
         <div className="flex w-full flex-col items-center gap-12 lg:gap-16">
-          <div className="flex w-full max-w-[628px] flex-col gap-12">
-            {/* Header */}
-            <div className="flex flex-col gap-6 text-center">
-              <h2 className="text-[32px] font-medium leading-none tracking-[-1.28px] text-black md:text-[40px] md:tracking-[-1.6px] lg:text-[48px] lg:tracking-[-1.92px]">
-                Join the Early Access WaitList
-              </h2>
-              <p className="text-base leading-[1.4] text-gray-11 md:text-lg">
-                Be the first to try our AI Agent and help shape the future of
-                agency briefs.
-              </p>
-            </div>
+          {/* Header */}
+          <div className="flex flex-col gap-6 text-center">
+            <h2 className="mx-auto max-w-[940px] text-[32px] font-medium leading-[1.4] tracking-[-1.28px] text-gray-12 md:text-[40px] md:tracking-[-1.6px] lg:text-[48px] lg:tracking-[-1.92px]">
+              We&apos;re building something that{" "}
+              <span className="text-primary">
+                helps us and agencies like ours work better
+              </span>
+              .
+              <br />
+              If you care, join us and shape what{" "}
+              <span className="text-primary">Primer</span> becomes.
+            </h2>
+          </div>
 
-            {/* Form */}
+          {/* Form */}
+          <div className="w-full max-w-[628px]">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -76,28 +75,7 @@ export function Footer() {
                         Full name
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="John Smith" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Phone Input */}
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-medium text-gray-11">
-                        Phone number
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          type="tel"
-                          placeholder="+84 123 456 789"
-                          {...field}
-                        />
+                        <Input placeholder="Your name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -116,7 +94,7 @@ export function Footer() {
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="john@acmeagency.com"
+                          placeholder="your@email.com"
                           {...field}
                         />
                       </FormControl>
@@ -127,35 +105,54 @@ export function Footer() {
 
                 {/* Submit Button */}
                 <Button type="submit" variant="default" className="w-full">
-                  Subscribe
+                  Count me in
                 </Button>
               </form>
             </Form>
           </div>
+        </div>
 
-          {/* Footer Bottom */}
-          <div className="flex w-full flex-col gap-8 border-t border-border-default pt-6 md:flex-row md:items-end md:justify-between">
-            {/* Contact Info */}
-            <div className="flex flex-col gap-3">
-              <h3 className="text-lg font-bold leading-[1.4] text-gray-12">
-                Contact
-              </h3>
-              <div className="flex flex-col gap-1 text-base leading-normal text-gray-11">
-                <p>Email: minh@paper-pens.com</p>
-                <p>Office: Ho Chi Minh City, Vietnam</p>
-                <p>Mobile: 01234567890</p>
-              </div>
+        {/* Footer Bottom */}
+        <div className="flex w-full flex-col gap-8 border-t border-border-default pt-6 md:flex-row md:items-end md:justify-between">
+          {/* Contact Info */}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-lg font-bold leading-[1.4] text-gray-12">
+              We&apos;d love to hear from you
+            </h3>
+            <div className="flex flex-col gap-1 text-base leading-normal text-gray-11">
+              <p>
+                Any feedback or curious thoughts about Primer? Feel free to send
+                us an email.
+              </p>
+              <p>
+                <a
+                  href="mailto:chloe@papers-pens.com"
+                  className="hover:text-gray-12 transition-colors"
+                >
+                  chloe@papers-pens.com
+                </a>{" "}
+                (CEO)
+              </p>
+              <p>
+                <a
+                  href="mailto:minh@papers-pens.com"
+                  className="hover:text-gray-12 transition-colors"
+                >
+                  minh@papers-pens.com
+                </a>{" "}
+                (Tech Lead)
+              </p>
             </div>
+          </div>
 
-            {/* Logo & Copyright */}
-            <div className="flex flex-col items-start gap-1 md:items-end">
-              <p className="text-[28px] font-semibold leading-normal tracking-[-0.84px] text-black md:text-[36.274px] md:tracking-[-1.0882px]">
-                LogoPlatform©
-              </p>
-              <p className="text-sm font-medium leading-[20px] text-gray-12">
-                © 2026 PNP. All right Reserved
-              </p>
-            </div>
+          {/* Logo & Copyright */}
+          <div className="flex flex-col items-start gap-1 md:items-end">
+            <p className="text-[28px] font-semibold leading-normal tracking-[-0.84px] text-black md:text-[36.274px] md:tracking-[-1.0882px]">
+              Primer
+            </p>
+            <p className="text-sm font-medium leading-[20px] text-gray-11">
+              A product by Papers & Pens
+            </p>
           </div>
         </div>
       </div>

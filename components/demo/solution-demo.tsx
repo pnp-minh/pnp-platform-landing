@@ -110,43 +110,25 @@ export function SolutionDemo() {
               <ChevronUp className="h-[17px] w-[17px] text-gray-12" />
             </div>
 
-            {/* Badges */}
-            <div className="mb-4 flex items-center gap-4">
-              <div className="rounded bg-gray-3 px-[6px] py-[2px]">
+            {/* Client's Response Section */}
+            <div className="space-y-3">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-1.5 rounded bg-gray-3 px-[6px] py-[2px]">
+                <FileText className="h-[11px] w-[11px] text-gray-9" />
                 <p className="text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
-                  Optional
-                </p>
-              </div>
-              <p className="text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
-                1 item extracted
-              </p>
-            </div>
-
-            {/* Input Field */}
-            <div className="mb-4 rounded bg-gray-3 px-[6px] py-1">
-              <p className="text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
-                Brand story and background
-              </p>
-            </div>
-
-            {/* Extracted Content Section */}
-            <div className="space-y-2">
-              {/* Title */}
-              <div className="flex items-center gap-2">
-                <FileText className="h-[26px] w-[26px] text-gray-12" />
-                <p className="text-[17px] font-semibold leading-normal tracking-[-0.38px] text-gray-12">
-                  Extracted Content
+                  Client&apos;s words
                 </p>
               </div>
 
               {/* Content */}
               <div className="space-y-1">
-                <p className="text-[13px] font-medium leading-normal tracking-[-0.28px] text-gray-12">
-                  The Brand focus on...
+                <p className="text-[13px] font-normal leading-[1.4] tracking-[-0.28px] text-gray-12">
+                  &quot;We&apos;re kinda like Notion but for project management? Our users say we&apos;re way simpler than Jira but more powerful than Trello. Does that make sense?&quot;
                 </p>
-                <div className="flex items-center justify-between text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
-                  <p>90% confidence</p>
-                  <p>09:00:00 AM</p>
+                <div className="flex items-center gap-1 text-[11px] font-medium leading-normal tracking-[-0.24px] text-gray-9">
+                  <p>From conversation</p>
+                  <span>•</span>
+                  <p>2 min ago</p>
                 </div>
               </div>
             </div>
