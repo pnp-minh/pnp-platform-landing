@@ -8,6 +8,9 @@ import {
 } from '@/components/ui/accordion'
 import { FAQIcon } from '@/components/ui/faq-icon'
 import { useState } from 'react'
+import { AnimatedSection } from '@/components/animated/AnimatedSection'
+import { motion } from 'framer-motion'
+import { staggerContainer, staggerItem } from '@/lib/animations/variants'
 
 const faqs = [
   {
@@ -50,24 +53,33 @@ export function FAQSection() {
     >
       <div className="flex w-full max-w-[846px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Title */}
-        <h1 className="w-full text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
-          FAQs
-        </h1>
+        <AnimatedSection variant="fadeUp" threshold={0.2}>
+          <h1 className="w-full text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
+            FAQs
+          </h1>
+        </AnimatedSection>
 
         {/* FAQ Accordion */}
-        <Accordion
-          type="single"
-          collapsible
-          className="w-full space-y-0"
-          value={openItem}
-          onValueChange={setOpenItem}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={staggerContainer}
+          className="w-full"
         >
-          {faqs.map((faq, index) => (
-            <AccordionItem
-              key={faq.id}
-              value={faq.id}
-              className={`border-0 ${index !== faqs.length - 1 ? 'border-b border-border-default' : ''}`}
-            >
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full space-y-0"
+            value={openItem}
+            onValueChange={setOpenItem}
+          >
+            {faqs.map((faq, index) => (
+              <motion.div key={faq.id} variants={staggerItem}>
+                <AccordionItem
+                  value={faq.id}
+                  className={`border-0 ${index !== faqs.length - 1 ? 'border-b border-border-default' : ''}`}
+                >
               <AccordionTrigger
                 className={`gap-4 pt-6 text-left hover:no-underline md:gap-12 lg:gap-[77px] ${
                   openItem === faq.id ? 'pb-0' : 'pb-6'
@@ -82,8 +94,10 @@ export function FAQSection() {
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
-          ))}
-        </Accordion>
+              </motion.div>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   )

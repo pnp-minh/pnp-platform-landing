@@ -1,5 +1,8 @@
+"use client";
+
 import { X, Plus, Lightbulb, BookMarked } from "lucide-react";
 import { SectionTag } from "@/components/ui/section-tag";
+import { AnimatedSection } from "@/components/animated/AnimatedSection";
 
 export function FeatureSection() {
   return (
@@ -11,7 +14,7 @@ export function FeatureSection() {
         {/* Content */}
         <div className="flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-6">
         {/* Left Card - Configure Brief Demo */}
-        <div className="relative h-[580px] w-full overflow-visible rounded-3xl bg-primary-3 md:h-[700px] lg:w-[628px]">
+        <AnimatedSection variant="fadeRight" threshold={0.2} className="relative h-[580px] w-full overflow-visible rounded-3xl bg-primary-3 md:h-[700px] lg:w-[628px]">
           {/* Main Configuration Card */}
           <div className="absolute left-1/2 top-[40px] flex w-[calc(100%-60px)] max-w-[487px] -translate-x-1/2 flex-col gap-5 rounded-3xl bg-white p-6 shadow-md md:top-[80px] md:p-8">
             {/* Header */}
@@ -105,10 +108,10 @@ export function FeatureSection() {
               </button>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
 
         {/* Right Card - Text Content */}
-        <div className="flex w-full flex-col gap-6 pl-0 lg:w-[628px] lg:pl-8">
+        <AnimatedSection variant="fadeLeft" delay={0.2} threshold={0.2} className="flex w-full flex-col gap-6 pl-0 lg:w-[628px] lg:pl-8">
           <div className="flex flex-col items-start gap-2.5">
             <SectionTag>How It Works</SectionTag>
             <h2 className="text-[32px] font-semibold leading-[1.2] tracking-[-1.28px] text-gray-12 md:text-[40px] md:tracking-[-1.6px] lg:text-[48px] lg:tracking-[-1.92px]">
@@ -128,7 +131,7 @@ export function FeatureSection() {
               results.
             </p>
           </div>
-        </div>
+        </AnimatedSection>
         </div>
       </div>
     </section>
