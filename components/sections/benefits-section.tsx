@@ -30,7 +30,10 @@ const features = [
 
 export function BenefitsSection() {
   return (
-    <section className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:pb-[60px] lg:pt-[120px]">
+    <section
+      id="benefits"
+      className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:pb-[60px] lg:pt-[120px]"
+    >
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Header */}
         <div className="flex w-full flex-col items-center gap-2.5">

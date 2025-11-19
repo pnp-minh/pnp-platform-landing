@@ -26,7 +26,10 @@ const benefits = [
 
 export function SolutionSection() {
   return (
-    <section className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:py-[60px]">
+    <section
+      id="solution"
+      className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:py-[60px]"
+    >
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Header */}
         <div className="flex w-full flex-col items-center gap-8">

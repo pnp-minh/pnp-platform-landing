@@ -3,6 +3,7 @@ import { Source_Serif_4, Inter } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
 import PostHogPageView from "@/components/PostHogPageView";
+import { Navbar } from "@/components/layout/navbar";
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <PostHogProvider>
           <PostHogPageView />
+          <Navbar />
           {children}
         </PostHogProvider>
       </body>

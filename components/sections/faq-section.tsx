@@ -42,7 +42,10 @@ export function FAQSection() {
   const [openItem, setOpenItem] = useState<string>('')
 
   return (
-    <section className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:py-[60px]">
+    <section
+      id="faqs"
+      className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:py-[60px]"
+    >
       <div className="flex w-full max-w-[846px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Title */}
         <h1 className="w-full text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">

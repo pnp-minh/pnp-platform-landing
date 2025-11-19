@@ -49,6 +49,10 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
 }
