@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/navbar";
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
+import "@/lib/animations/performance.css";
 import { PostHogProvider } from "./providers";
 
 const sourceSerif = Source_Serif_4({

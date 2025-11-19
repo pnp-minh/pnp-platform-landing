@@ -1,0 +1,56 @@
+/**
+ * Animation Performance Optimizations
+ *
+ * GPU acceleration and will-change hints for smooth 60fps animations
+ */
+
+/* Animated sections - hint browser about transform/opacity changes */
+[data-animated="true"] {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes to free resources */
+[data-animated="complete"] {
+  will-change: auto;
+}
+
+/* Force GPU acceleration for all animated elements */
+.motion-element {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize hover interactions */
+.hover-lift {
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) translateZ(0);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-specific performance optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  [data-animated="true"] {
+    animation-timing-function: ease-out;
+  }
+
+  /* Disable blur effects on mobile for performance */
+  .blur-effect {
+    filter: none !important;
+  }
+}

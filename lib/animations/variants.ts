@@ -3,6 +3,21 @@ import { Variants } from "framer-motion";
 // Brand easing: Confident but not aggressive
 const brandEasing = [0.4, 0, 0.2, 1] as any; // cubic-bezier(0.4, 0, 0.2, 1)
 
+// Check if user prefers reduced motion
+const prefersReducedMotion = () => {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+};
+
+// Reduced motion variants (instant transitions)
+const reducedMotionVariant = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.01 },
+  },
+};
+
 // Animation variants for consistent motion across components
 export const fadeUp: Variants = {
   hidden: {
