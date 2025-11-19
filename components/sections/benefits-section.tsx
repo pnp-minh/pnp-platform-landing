@@ -1,10 +1,5 @@
-"use client";
-
 import { DemoHeader, DemoProvider } from "@/components/demo/animated-chat-demo";
 import { SectionTag } from "@/components/ui/section-tag";
-import { AnimatedSection } from "@/components/animated/AnimatedSection";
-import { motion } from "framer-motion";
-import { staggerContainer, staggerItem } from "@/lib/animations/variants";
 
 const features = [
   {
@@ -38,7 +33,7 @@ export function BenefitsSection() {
     >
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Header */}
-        <AnimatedSection variant="fadeUp" threshold={0.2} className="flex w-full flex-col items-center gap-2.5">
+        <div className="flex w-full flex-col items-center gap-2.5">
           {/* Benefits Tag */}
           <SectionTag>Benefits</SectionTag>
 
@@ -46,12 +41,11 @@ export function BenefitsSection() {
           <h2 className="text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
             Three Actions. Three Seconds. Zero Friction.
           </h2>
-        </AnimatedSection>
+        </div>
 
         {/* Content */}
         <div className="flex w-full flex-col gap-6">
           {/* UI Preview Card */}
-          <AnimatedSection variant="scaleUp" delay={0.2} threshold={0.15}>
           <DemoProvider>
             <div className="flex w-full flex-col rounded-3xl bg-primary-3 md:min-h-[500px] lg:h-[500px] lg:flex-row lg:items-center lg:justify-center lg:gap-[182px] lg:overflow-hidden">
               {/* Left Side - Demo Header and Container */}
@@ -65,22 +59,12 @@ export function BenefitsSection() {
               </div>
             </div>
           </DemoProvider>
-          </AnimatedSection>
 
           {/* Feature Cards */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={staggerContainer}
-            className="flex w-full flex-col gap-5 md:gap-6 lg:flex-row lg:gap-6"
-          >
+          <div className="flex w-full flex-col gap-5 md:gap-6 lg:flex-row lg:gap-6">
             {features.map((feature, index) => (
-              <motion.div
+              <div
                 key={feature.id}
-                variants={staggerItem}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3 }}
                 className="flex w-full flex-col rounded-3xl bg-gray-2 p-6 lg:w-[411px]"
               >
                 <div className="flex flex-col gap-6">
@@ -108,9 +92,9 @@ export function BenefitsSection() {
                     {feature.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
