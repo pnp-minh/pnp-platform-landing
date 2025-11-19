@@ -52,19 +52,19 @@ const briefTemplates = [
 const cardVariants = {
   hidden: (index: number) => ({
     opacity: 0,
-    y: 60,
-    scale: 0.95,
+    y: 40,
+    scale: 0.97,
   }),
   visible: (index: number) => ({
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.8,
+      duration: 1.0,
       ease: [0.4, 0, 0.2, 1] as any,
-      // Center card (index 1) appears first (0ms delay)
-      // Side cards (index 0, 2) appear 200ms later
-      delay: index === 1 ? 0 : 0.2,
+      // Center card (index 1) appears first (300ms delay)
+      // Side cards (index 0, 2) appear 400ms later
+      delay: index === 1 ? 0.3 : 0.7,
     },
   }),
 };

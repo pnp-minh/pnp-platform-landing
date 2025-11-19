@@ -22,13 +22,13 @@ const reducedMotionVariant = {
 export const fadeUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 40,
+    y: 30,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
+      duration: 1.0,
       ease: brandEasing,
     },
   },
@@ -37,13 +37,13 @@ export const fadeUp: Variants = {
 export const fadeDown: Variants = {
   hidden: {
     opacity: 0,
-    y: -40,
+    y: -30,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
+      duration: 1.0,
       ease: brandEasing,
     },
   },
@@ -52,13 +52,13 @@ export const fadeDown: Variants = {
 export const fadeLeft: Variants = {
   hidden: {
     opacity: 0,
-    x: 60,
+    x: 40,
   },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.9,
+      duration: 1.2,
       ease: brandEasing,
     },
   },
@@ -67,13 +67,13 @@ export const fadeLeft: Variants = {
 export const fadeRight: Variants = {
   hidden: {
     opacity: 0,
-    x: -60,
+    x: -40,
   },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.9,
+      duration: 1.2,
       ease: brandEasing,
     },
   },
@@ -82,13 +82,13 @@ export const fadeRight: Variants = {
 export const scaleUp: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.95,
+    scale: 0.97,
   },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.7,
+      duration: 1.0,
       ease: brandEasing,
     },
   },
@@ -103,7 +103,7 @@ export const drawLine: Variants = {
     opacity: 1,
     scaleY: 1,
     transition: {
-      duration: 0.8,
+      duration: 1.4,
       ease: brandEasing,
     },
   },
@@ -113,17 +113,17 @@ export const drawLine: Variants = {
 export const heroHeading: Variants = {
   hidden: {
     opacity: 0,
-    y: 40,
-    filter: "blur(10px)",
+    y: 30,
+    filter: "blur(8px)",
   },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
     transition: {
-      duration: 0.9,
+      duration: 1.2,
       ease: brandEasing,
-      delay: 0.2,
+      delay: 0.3,
     },
   },
 };
@@ -137,9 +137,9 @@ export const heroSubheading: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 1.0,
       ease: brandEasing,
-      delay: 0.4,
+      delay: 0.6,
     },
   },
 };
@@ -147,15 +147,15 @@ export const heroSubheading: Variants = {
 export const heroCTA: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.9,
+    scale: 0.95,
   },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.6,
+      duration: 0.8,
       ease: brandEasing,
-      delay: 0.6,
+      delay: 0.9,
     },
   },
 };
@@ -166,8 +166,8 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
   },
 };
@@ -176,13 +176,13 @@ export const staggerContainer: Variants = {
 export const staggerItem: Variants = {
   hidden: {
     opacity: 0,
-    y: 40,
+    y: 30,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.9,
       ease: brandEasing,
     },
   },
