@@ -33,7 +33,7 @@ export function SolutionSection() {
           <div className="flex flex-col items-center gap-2.5">
             {/* Solution Badge */}
             <div className="rounded-lg bg-[#ededed] px-4 py-3">
-              <p className="text-sm font-medium tracking-[-0.28px] text-[#adadad]">
+              <p className="text-sm font-medium leading-[1.6] tracking-[-0.28px] text-[#adadad]">
                 Solution
               </p>
             </div>
