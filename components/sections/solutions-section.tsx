@@ -7,21 +7,21 @@ const features = [
     number: "01",
     title: "Eats Your Entire Brand for Breakfast",
     description:
-      "Reads everything you provide — text, websites, files, and past conversations — and turns it into instant brand intelligence.",
+      "Reads everything you provide — text, websites, files, and past conversations — and turns it into Brand Intelligence you can actually use.",
   },
   {
     id: 2,
     number: "02",
     title: "Conducts the Perfect Brief Interview",
     description:
-      "Whether it's a creative brief, content brief, or campaign brief, this generates a complete, structured, on-brand draft in seconds.",
+      "The AI Brief Consultant handles every brief—creative, content, campaign—and generates a structured, on-brand draft in seconds.",
   },
   {
     id: 3,
     number: "03",
     title: "Drops the Brief Into Your Workflow",
     description:
-      "Export your brief to PDF or push it directly into Notion, email, and more. Your team gets a ready-to-use brief without any manual work.",
+      "Workflow integration lets you export to PDF or push into Notion, email, and more. Your team gets ready-to-use briefs without manual work.",
   },
 ];
 

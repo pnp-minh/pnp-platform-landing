@@ -40,7 +40,7 @@ export function PlatformSection() {
                     className="text-base leading-[1.6] text-gray-11"
                     style={{ textWrap: 'balance' } as React.CSSProperties}
                   >
-                    Set up your template and brand intelligence once. Share the brief with your client. They answer questions, send files, add context—at their own pace. Primer builds a structured brief and delivers it to you. Your team skips the intake, keeps the intelligence.
+                    Set up your template and Brand Intelligence once. Share the brief link with your client. They chat with the AI Brief Consultant, answering questions and adding context at their own pace. Primer delivers a structured brief into your Workflow. You skip the intake, keep the intelligence.
                   </p>
                 </div>
               </div>

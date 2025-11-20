@@ -12,7 +12,7 @@ const benefits = [
     id: 2,
     title: "New hires productive from day one",
     description:
-      "Primer gives new team members instant access to your brand intelligence and past project insights. No training lag.",
+      "Primer gives new team members instant access to your Brand Intelligence and past project insights. No training lag.",
   },
   {
     id: 3,

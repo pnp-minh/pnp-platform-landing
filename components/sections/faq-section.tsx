@@ -14,7 +14,7 @@ const faqs = [
     id: "1",
     question: "1. What makes Primer different from ChatGPT?",
     answer:
-      "Primer is built specifically for agencies: structured brief templates, brand intelligence that learns from past projects, and automated brief generation. ChatGPT is general-purpose; Primer is your specialist.",
+      "Primer is built specifically for agencies: structured brief templates, Brand Intelligence that learns from past projects, and automated brief generation. ChatGPT is general-purpose; Primer is your specialist.",
   },
   {
     id: "2",

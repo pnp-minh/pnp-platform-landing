@@ -124,7 +124,7 @@ export function ChallengeSection() {
               When your senior strategist spends 3 hours on intake calls and another hour writing it up, that&apos;s half a day not doing strategy. When someone leaves, their client knowledge walks out the door. New hires struggle to match the brief quality of your veterans. Clients feel interrogated by repetitive questions.
             </p>
             <p className="text-base leading-[1.6] text-gray-11">
-              Primer handles what&apos;s predictable—gathering context, maintaining brand intelligence, producing structured briefs—so your team focuses on what&apos;s not: strategy, creativity, and relationships.
+              Primer handles what&apos;s predictable—gathering context, maintaining Brand Intelligence, producing structured briefs—so your team focuses on what&apos;s not: strategy, creativity, and relationships.
             </p>
           </div>
         </div>
