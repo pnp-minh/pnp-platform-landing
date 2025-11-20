@@ -1,27 +1,24 @@
-import { DemoHeader, DemoProvider } from "@/components/demo/animated-chat-demo";
+import { SolutionDemo } from "@/components/demo/solution-demo";
 import { SectionTag } from "@/components/ui/section-tag";
 
-const features = [
+const benefits = [
   {
     id: 1,
-    number: "01",
-    title: "Eats Your Entire Brand for Breakfast",
+    title: "Saves time on every brief",
     description:
-      "Reads everything you provide — text, websites, files, and past conversations — and turns it into instant brand intelligence.",
+      "Primer turns a 3-hour briefing process into 15 minutes. Your team focuses on strategy, not admin works.",
   },
   {
     id: 2,
-    number: "02",
-    title: "Help Your Team Write a Perfect Brief",
+    title: "New hires productive from day one",
     description:
-      "Whether it's a creative brief, content brief, or campaign brief, this generates a complete, structured, on-brand draft in seconds.",
+      "Primer gives new team members instant access to your brand intelligence and past project insights. No training lag.",
   },
   {
     id: 3,
-    number: "03",
-    title: "Drops the Brief Into Workflow",
+    title: "More clients without hiring",
     description:
-      "Export your brief to PDF or push it directly into Notion, email, and more. Your team gets a ready-to-use brief without any manual work.",
+      "Your current team can take on 3x more work when Primer handles brief gathering. Grow revenue, not headcount.",
   },
 ];
 
@@ -29,71 +26,57 @@ export function BenefitsSection() {
   return (
     <section
       id="benefits"
-      className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:pb-[60px] lg:pt-[120px]"
+      className="flex items-center justify-center px-5 py-10 md:px-10 md:py-12 lg:px-20 lg:py-[60px]"
     >
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-10 md:gap-12 lg:gap-[60px]">
         {/* Header */}
-        <div className="flex w-full flex-col items-center gap-2.5">
-          {/* Benefits Tag */}
-          <SectionTag>Benefits</SectionTag>
+        <div className="flex w-full flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-2.5">
+            {/* Solution Tag */}
+            <SectionTag>Benefits</SectionTag>
 
-          {/* Title */}
-          <h2 className="text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
-            Three Actions. Three Seconds. Zero Friction.
-          </h2>
+            {/* Title */}
+            <h2
+              className="max-w-[720px] text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]"
+              style={{ textWrap: "balance" } as React.CSSProperties}
+            >
+              What Primer Does for Your Agency
+            </h2>
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="flex w-full flex-col gap-6">
-          {/* UI Preview Card */}
-          <DemoProvider>
-            <div className="flex w-full flex-col rounded-3xl bg-primary-3 md:min-h-[500px] lg:h-[500px] lg:flex-row lg:items-center lg:justify-center lg:gap-[182px] lg:overflow-hidden">
-              {/* Left Side - Demo Header and Container */}
-              <div className="flex h-full w-full flex-col gap-6 p-6 md:gap-8 md:p-10 lg:w-[521px] lg:shrink-0 lg:justify-center lg:p-0">
-                <DemoHeader />
-              </div>
-
-              {/* Right Side - Animated Chat Messages */}
-              <div className="flex w-full flex-col items-end justify-center gap-6 p-6 md:gap-8 md:p-8 lg:w-[457px] lg:shrink-0 lg:p-0">
-                {/* <DemoMessages /> */}
-              </div>
-            </div>
-          </DemoProvider>
-
-          {/* Feature Cards */}
-          <div className="flex w-full flex-col gap-5 md:gap-6 lg:flex-row lg:gap-6">
-            {features.map((feature, index) => (
-              <div
-                key={feature.id}
-                className="flex w-full flex-col rounded-3xl bg-gray-2 p-6 lg:w-[411px]"
-              >
-                <div className="flex flex-col gap-6">
-                  <div className="flex gap-2">
+        {/* Content Grid */}
+        <div className="flex w-full flex-col items-center gap-8 xl:flex-row xl:items-stretch xl:gap-6">
+          {/* Benefits Cards */}
+          <div className="flex w-full flex-col gap-5 xl:w-[411px] xl:shrink-0">
+            {benefits.map((benefit) => {
+              return (
+                <div
+                  key={benefit.id}
+                  className="flex flex-col gap-5 rounded-3xl bg-[#f9f9f9] p-6"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-2 w-2 shrink-0 items-center justify-center">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    </div>
                     <h3
-                      className={`font-medium leading-tight text-text-secondary ${
-                        index === 0
-                          ? "text-xl tracking-[-0.8px] md:text-2xl md:tracking-[-0.96px]"
-                          : "text-xl tracking-[-0.8px] md:text-[22px] md:tracking-[-0.88px]"
-                      }`}
+                      className="text-xl font-medium leading-tight tracking-[-0.8px] text-black md:text-[22px] md:tracking-[-0.88px]"
+                      style={{ textWrap: "balance" } as React.CSSProperties}
                     >
-                      {feature.number}
-                    </h3>
-                    <h3
-                      className={`font-medium leading-tight text-text-primary ${
-                        index === 0
-                          ? "text-xl tracking-[-0.8px] md:text-2xl md:tracking-[-0.96px]"
-                          : "text-xl tracking-[-0.8px] md:text-[22px] md:tracking-[-0.88px]"
-                      }`}
-                    >
-                      {feature.title}
+                      {benefit.title}
                     </h3>
                   </div>
                   <p className="text-sm leading-[1.4] text-gray-11 md:text-base">
-                    {feature.description}
+                    {benefit.description}
                   </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+
+          {/* Demo Preview */}
+          <div className="h-[400px] w-full md:h-[500px] xl:h-full xl:w-[845px]">
+            <SolutionDemo />
           </div>
         </div>
       </div>

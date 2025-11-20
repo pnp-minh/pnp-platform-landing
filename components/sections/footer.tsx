@@ -46,7 +46,7 @@ export function Footer() {
         <div className="flex w-full flex-col items-center gap-12 lg:gap-16">
           {/* Header */}
           <div className="flex flex-col gap-6 text-center">
-            <h2 className="mx-auto max-w-[940px] text-[32px] font-medium leading-[1.4] tracking-[-1.28px] text-gray-12 md:text-[40px] md:tracking-[-1.6px] lg:text-[48px] lg:tracking-[-1.92px]">
+            <h2 className="mx-auto max-w-[940px] text-[32px] font-semibold leading-none tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
               We&apos;re building something that{" "}
               <span className="text-primary">
                 helps us and agencies like ours work better
@@ -119,7 +119,7 @@ export function Footer() {
             <h3 className="text-lg font-bold leading-[1.4] text-gray-12">
               We&apos;d love to hear from you
             </h3>
-            <div className="flex flex-col gap-1 text-base leading-normal text-gray-11">
+            <div className="flex flex-col gap-1 text-base leading-[1.6] text-gray-11">
               <p>
                 Any feedback or curious thoughts about Primer? Feel free to send
                 us an email.

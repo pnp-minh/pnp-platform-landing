@@ -9,7 +9,7 @@ export function CtaSection() {
       <div className="flex w-full max-w-[800px] flex-col items-center gap-6">
         {/* Title */}
         <h2 className="w-full text-center text-[32px] font-semibold leading-none tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
-          Experience Primer with your brand
+          Experience Primer With Your Brand
         </h2>
 
         {/* Description */}

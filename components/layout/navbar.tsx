@@ -1,18 +1,18 @@
 "use client";
 
-import { Menu } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Menu } from "lucide-react";
 
 const navLinks = [
-  { href: "#platform", label: "Platform" },
-  { href: "#feature", label: "How It Works" },
+  { href: "#product", label: "Product" },
+  { href: "#challenge", label: "Challenge" },
+  { href: "#how-it-works", label: "How Primer Works" },
   { href: "#benefits", label: "Benefits" },
-  { href: "#solution", label: "Solution" },
   { href: "#faqs", label: "FAQs" },
 ];
 
@@ -67,7 +67,9 @@ export function Navbar() {
                 <a
                   href={link.href}
                   className={`block w-full cursor-pointer px-6 py-4 text-lg font-medium text-black transition-colors hover:text-gray-12 ${
-                    index !== navLinks.length - 1 ? "border-b border-gray-3" : ""
+                    index !== navLinks.length - 1
+                      ? "border-b border-gray-3"
+                      : ""
                   }`}
                 >
                   {link.label}
