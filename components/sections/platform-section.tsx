@@ -22,7 +22,7 @@ export function PlatformSection() {
               <div className="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-8">
                 {/* Left: Title */}
                 <h2
-                  className="w-full text-[32px] font-semibold leading-none tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:w-[528px] lg:text-[48px] lg:tracking-[-2.4px]"
+                  className="w-full text-[32px] font-semibold leading-[1.2] tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:w-[528px] lg:text-[48px] lg:tracking-[-2.4px]"
                   style={{ textWrap: 'balance' } as React.CSSProperties}
                 >
                   AI brief consultant for agencies

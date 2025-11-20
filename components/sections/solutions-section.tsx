@@ -38,7 +38,7 @@ export function SolutionsSection() {
           <SectionTag>How Primer Works</SectionTag>
 
           {/* Title */}
-          <h2 className="text-center text-[32px] font-semibold leading-none tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
+          <h2 className="text-center text-[32px] font-semibold leading-[1.2] tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
             Ingest. Interview. Integrate.
           </h2>
         </div>

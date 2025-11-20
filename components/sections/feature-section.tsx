@@ -114,7 +114,7 @@ export function ChallengeSection() {
         <div className="flex w-full flex-col gap-6 pl-0 lg:w-[628px] lg:pl-8">
           <div className="flex flex-col items-start gap-2.5">
             <SectionTag>The Challenge</SectionTag>
-            <h2 className="text-[32px] font-semibold leading-none tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
+            <h2 className="text-[32px] font-semibold leading-[1.2] tracking-[-1.6px] text-gray-12 md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]">
               Your Best People Shouldn&apos;t Spend Hours on Briefs
             </h2>
           </div>

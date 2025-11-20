@@ -37,7 +37,7 @@ export function BenefitsSection() {
 
             {/* Title */}
             <h2
-              className="max-w-[720px] text-center text-[32px] leading-none tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]"
+              className="max-w-[720px] text-center text-[32px] leading-[1.2] tracking-[-1.6px] text-text-primary md:text-[40px] md:tracking-[-2px] lg:text-[48px] lg:tracking-[-2.4px]"
               style={{ textWrap: "balance" } as React.CSSProperties}
             >
               What Primer Does for Your Agency
