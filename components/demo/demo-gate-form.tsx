@@ -1,11 +1,12 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { usePostHog } from 'posthog-js/react'
-import type { Variant } from '@/lib/getVariant'
+import type { Variant } from "@/lib/getVariant";
+import type { BrandIntelligence } from "@/lib/web-scraper";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { usePostHog } from "posthog-js/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 import {
   Form,
@@ -15,194 +16,215 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { DemoLoadingProgress } from "./demo-loading-progress";
+import { BrandIntelligencePreview } from "./brand-intelligence-preview";
 
 interface DemoGateFormProps {
-  variant: Variant
+  variant: Variant;
 }
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
-  }),
-  company: z.string().min(2, {
-    message: 'Company name must be at least 2 characters.',
-  }),
   website: z
     .string()
     .url({
-      message: 'Please enter a valid URL.',
+      message: "Please enter a valid URL starting with https://",
     })
     .optional()
-    .or(z.literal('')),
-  teamSize: z.coerce
-    .number()
-    .min(1, {
-      message: 'Team size must be at least 1.',
-    })
-    .max(1000, {
-      message: 'Team size must be less than 1000.',
-    }),
-})
+    .or(z.literal("")),
+});
 
-type FormValues = z.infer<typeof formSchema>
+type FormValues = z.infer<typeof formSchema>;
+
+type DemoContext = {
+  website: string;
+  brandSummary: string;
+  insights: string[];
+  brandVoice: string;
+  brandIntelligence: BrandIntelligence;
+};
 
 export function DemoGateForm({ variant }: DemoGateFormProps) {
-  const posthog = usePostHog()
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const posthog = usePostHog();
+  const [phase, setPhase] = useState<
+    "form" | "loading" | "preview" | "demo"
+  >("form");
+  const [demoContext, setDemoContext] = useState<DemoContext | null>(null);
 
   const form = useForm<FormValues>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(formSchema) as any,
     defaultValues: {
-      name: '',
-      company: '',
-      website: '',
-      teamSize: 5,
+      website: "",
     },
-  })
+  });
 
   const onSubmit = async (values: FormValues) => {
     try {
+      // Use Papers & Pens website as fallback if no URL provided
+      const websiteUrl = values.website || "https://papers-pens.com";
+
       // Track demo started event in PostHog
-      posthog.capture('demo_started', {
+      posthog.capture("demo_started", {
         variant,
-        company_provided: !!values.company,
         website_provided: !!values.website,
-        team_size: values.teamSize,
-      })
+        used_fallback: !values.website,
+      });
+
+      // Show loading phase
+      setPhase("loading");
 
       // Call API to generate context from website
-      const response = await fetch('/api/demo/generate-context', {
-        method: 'POST',
+      const response = await fetch("/api/demo/generate-context", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
-      })
+        body: JSON.stringify({ website: websiteUrl }),
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to generate context')
+        throw new Error("Failed to generate context");
       }
 
-      const data = await response.json()
+      const data = await response.json();
 
-      // Store context in sessionStorage for demo to use
-      sessionStorage.setItem('demoContext', JSON.stringify(data.context))
+      // Store context
+      setDemoContext(data.context);
+      sessionStorage.setItem("demoContext", JSON.stringify(data.context));
 
-      setIsSubmitted(true)
+      // Move to preview phase (loading component will trigger this via onComplete)
     } catch (error) {
-      console.error('Error submitting form:', error)
-      // Still allow demo to proceed even if API fails
-      // Store basic info without insights
-      sessionStorage.setItem(
-        'demoContext',
-        JSON.stringify({
-          name: values.name,
-          company: values.company,
-          teamSize: values.teamSize,
-          hasWebsite: false,
-          brandContext: `${values.company} - Professional agency`,
-          insights: [],
-        })
-      )
-      setIsSubmitted(true)
+      console.error("Error submitting form:", error);
+      // Still allow demo to proceed with fallback
+      const fallbackContext: DemoContext = {
+        website: values.website || "https://papers-pens.com",
+        brandSummary:
+          "Papers & Pens is a product marketing agency helping B2B/SaaS brands grow through expert positioning, messaging, and go-to-market strategies.",
+        insights: [
+          "B2B agencies see 3x better client retention with structured brief processes",
+          "Most successful projects start with thorough discovery and brand alignment",
+        ],
+        brandVoice:
+          "Direct, confident, and expertise-driven. Uses clear language without jargon, focuses on practical outcomes.",
+        brandIntelligence: {
+          logo: "https://cdn.sanity.io/images/n0d9khdx/production/03c5d6e90a1b3ca130471e0e0f2003cfeff012ef-1200x628.png",
+          colors: ["#00A57C", "#007B5E", "#1D1D1D", "#F4F4F4", "#C4C4C4"],
+        },
+      };
+      setDemoContext(fallbackContext);
+      sessionStorage.setItem("demoContext", JSON.stringify(fallbackContext));
+      // Move to preview phase
     }
+  };
+
+  // Loading phase - show animated progress
+  if (phase === "loading") {
+    return (
+      <DemoLoadingProgress
+        onComplete={() => {
+          // Track loading completed
+          posthog.capture("demo_loading_completed", { variant });
+          // Move to preview phase
+          setPhase("preview");
+        }}
+      />
+    );
   }
 
-  // If form is submitted, hide it (demo will show)
-  if (isSubmitted) {
-    return null
+  // Preview phase - show brand intelligence bento grid
+  if (phase === "preview" && demoContext) {
+    return (
+      <BrandIntelligencePreview
+        website={demoContext.website}
+        brandSummary={demoContext.brandSummary}
+        brandVoice={demoContext.brandVoice}
+        brandIntelligence={demoContext.brandIntelligence}
+        onStartDemo={() => {
+          // Track preview viewed and demo started
+          posthog.capture("demo_preview_completed", { variant });
+          posthog.capture("demo_chat_started", { variant });
+          // Move to demo phase
+          setPhase("demo");
+        }}
+      />
+    );
   }
 
+  // Demo phase - hide form completely (demo component will show)
+  if (phase === "demo") {
+    return null;
+  }
+
+  // Form phase - show initial form
   return (
-    <div className="flex min-h-screen items-center justify-center px-5 py-20">
-      <div className="w-full max-w-[500px]">
+    <div
+      className="flex items-center justify-center overflow-hidden px-5 py-8 md:py-12 lg:py-0"
+      style={{ height: "calc(100vh - 68px)" }}
+    >
+      <div className="w-full max-w-[600px]">
         {/* Header */}
-        <div className="mb-8 text-center">
-          <h2 className="mb-3 text-3xl font-semibold leading-tight tracking-[-1.2px] text-black">
-            Experience JAY with your brand
+        <div className="mb-6 space-y-4 md:mb-8 md:space-y-5 lg:mb-10 lg:space-y-8">
+          <h2 className="text-center text-2xl font-semibold leading-tight tracking-[-1.2px] text-black md:text-3xl lg:text-4xl">
+            See Primer in Action
           </h2>
-          <p className="text-base leading-normal tracking-[-0.32px] text-[#646464]">
-            See how JAY helps gather a professional brief for your agency—personalized to your context.
-          </p>
+
+          <div className="space-y-5 text-left md:space-y-6">
+            <div>
+              <h3 className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-gray-11 md:mb-2 md:text-sm">
+                The Scenario
+              </h3>
+              <p className="text-sm leading-[1.6] text-gray-11 md:text-base">
+                Picture this: Your client needs a video brief. Instead of a
+                3-hour intake call, you send them a Primer link. They chat with
+                Primer for a few minutes. You receive a complete brief.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-gray-11 md:mb-2 md:text-sm">
+                In This Demo
+              </h3>
+              <p className="text-sm leading-[1.6] text-gray-11 md:text-base">
+                You&apos;ll experience the{" "}
+                <span className="font-semibold text-gray-12">CLIENT side</span>
+                —the conversation your clients will have with Primer. Judge the
+                experience for yourself: quality of questions, speed of the
+                process, and intelligence of responses.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Form */}
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-            {/* Name Field */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm font-medium text-[#646464]">
-                    Your name
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="John Smith" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Company Field */}
-            <FormField
-              control={form.control}
-              name="company"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm font-medium text-[#646464]">
-                    Company name
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="Acme Agency" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Website Field (Optional) */}
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 md:space-y-5 lg:space-y-6"
+          >
+            {/* Website Field */}
             <FormField
               control={form.control}
               name="website"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-[#646464]">
-                    Website{' '}
-                    <span className="font-normal text-[#a0a0a0]">(optional)</span>
+                  <FormLabel className="text-sm font-semibold text-gray-12 md:text-base">
+                    Enter a brand website to demo with
                   </FormLabel>
                   <FormControl>
                     <Input
                       type="url"
-                      placeholder="https://acmeagency.com"
+                      placeholder="https://example.com"
+                      className="h-11 text-sm md:h-12 md:text-base"
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="text-xs text-[#a0a0a0]">
-                    JAY will reference your brand context during the brief
+                  <FormDescription className="text-xs leading-[1.4] text-gray-11 md:text-sm">
+                    Primer will analyze the website and use real brand context
+                    in the demo. Leave empty to use our agency website (Papers &
+                    Pens) as an example.
                   </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Team Size Field */}
-            <FormField
-              control={form.control}
-              name="teamSize"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm font-medium text-[#646464]">
-                    Team size
-                  </FormLabel>
-                  <FormControl>
-                    <Input type="number" min="1" max="1000" {...field} />
-                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -212,7 +234,7 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
             <button
               type="submit"
               disabled={form.formState.isSubmitting}
-              className="mt-4 flex h-14 w-full items-center justify-center rounded-xl bg-black px-8 text-base font-semibold leading-normal tracking-[-0.32px] text-white transition-all hover:bg-[#2a2a2a] hover:shadow-lg disabled:opacity-50"
+              className="mt-4 flex h-12 w-full items-center justify-center rounded-xl bg-primary px-8 text-sm font-semibold leading-normal tracking-[-0.32px] text-white transition-colors hover:bg-primary/90 disabled:opacity-50 md:mt-5 md:h-14 md:text-base lg:mt-6"
             >
               {form.formState.isSubmitting ? (
                 <span className="flex items-center gap-2">
@@ -236,20 +258,15 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  Generating your demo...
+                  Preparing your demo...
                 </span>
               ) : (
-                'Generate My Demo'
+                "Start Demo"
               )}
             </button>
           </form>
         </Form>
-
-        {/* Privacy Note */}
-        <p className="mt-6 text-center text-xs leading-normal text-[#a0a0a0]">
-          Your information is secure. We&apos;ll only use it to personalize this demo experience.
-        </p>
       </div>
     </div>
-  )
+  );
 }

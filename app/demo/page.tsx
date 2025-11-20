@@ -8,7 +8,7 @@ export default async function DemoPage() {
   const variant = await getVariant()
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       {/* Demo Gate Form - Shows first, collects user info */}
       <DemoGateForm variant={variant} />
 

@@ -1,5 +1,9 @@
 # Demo Flow Design - Psychology & Structure
 
+**Current Focus**: Version A (Revenue Growth) - Version B (Knowledge Retention) scheduled for next week
+
+**Product Name**: Primer (formerly JAY - all references updated)
+
 ## Core Principles for Both Versions
 
 ### Psychology Rules:
@@ -30,13 +34,13 @@
 
 **Hero Section (Simplified):**
 
-- Headline: "Handle 3x More Clients Without Hiring"
-- Subheadline: "Your team spends hours on brief gathering. What if it took 2 minutes instead? See how JAY turns conversations into professional briefs—instantly."
+- Headline: "Better Briefs. Less Time. Same Team."
+- Subheadline: "Primer is an AI Brief Consultant that handles client intake through chat. Your team receives complete, structured briefs—without the hours of calls and documentation."
 
 **Single Clear CTA:**
 
 ```
-[See JAY in Action] (90 seconds)
+[Experience Primer] (90 seconds)
 
 ✓ No signup required
 ✓ Personalized for your agency
@@ -49,12 +53,13 @@
 - Experience-first: "See it work" vs "Calculate ROI"
 - Low barrier: No signup, quick demo
 - Curiosity: "How is this possible?" → demo shows them
+- Primary concerns addressed: Brief quality + Speed/intelligence (Version A focus)
 
 **Alternative Messaging Options:**
 
 - Problem-first: "Your team spends 3 hours gathering each brief. What if this took 2 minutes instead?"
 - Capacity-focused: "Your 5-person team has a growth ceiling. Not because of talent. Because of time."
-- Vision-forward: "Scale without scaling costs. See how JAY helps agencies grow."
+- Vision-forward: "Scale without scaling costs. See how Primer helps agencies grow."
 
 ### Demo Page Structure (Version A)
 
@@ -62,14 +67,14 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│ [Progress: 1 of 3]        JAY Demo        [1:30]   │ ← Timer showing time elapsed
+│ [Progress: 1 of 3]     Primer Demo       [1:30]    │ ← Timer showing time elapsed
 ├─────────────────────────────────────────────────────┤
 │                                                      │
 │  Left Panel (60%)          Right Panel (40%)        │
 │  ┌──────────────────┐     ┌────────────────┐       │
 │  │                  │     │  Brief Preview  │       │
 │  │  Chat Interface  │     │  ┌────────────┐ │       │
-│  │  (JAY)           │     │  │ Objective  │ │       │
+│  │  (Primer)        │     │  │ Objective  │ │       │
 │  │                  │     │  │ ✓ Filled   │ │       │
 │  │                  │     │  │            │ │       │
 │  │                  │     │  │ Target     │ │       │
@@ -86,20 +91,52 @@
 
 ### Step-by-Step Flow (Version A)
 
-#### STEP 1: Instant Context (0:00 - 0:15)
+#### STEP 0: Opening Frame - Strategic Context Setting (0:00 - 0:10)
+
+**Critical Addition**: Before demo starts, set proper expectations for agency owner
+
+```
+┌─────────────────────────────────────────────────────┐
+│  Demo Mode: Client Experience                       │
+├─────────────────────────────────────────────────────┤
+│                                                      │
+│  You're about to experience what YOUR clients will  │
+│  see when you send them a brief to complete.        │
+│                                                      │
+│  For this demo, imagine you're a client being       │
+│  asked to brief your agency on a new video project. │
+│                                                      │
+│  Judge the experience for yourself:                 │
+│  • Quality of questions                             │
+│  • Speed of the process                             │
+│  • Intelligence of AI responses                     │
+│                                                      │
+│  [Start Demo]                                       │
+└─────────────────────────────────────────────────────┘
+```
+
+**Psychology**:
+- Sets clear expectation: "You're evaluating this FOR your clients"
+- Permission to judge: "Is this good enough for MY clients?"
+- Clear evaluation criteria: Quality, speed, intelligence
+- Addresses Version A primary concerns: Brief quality + speed/intelligence
+
+**User Mindset Shift**: From "I'm trying a tool" → "I'm evaluating my client's experience"
+
+#### STEP 1: Instant Context (0:15 - 0:30)
 
 Demo loads with:
 
-- JAY already typing (simulated)
+- Primer already typing (simulated)
 - Pre-filled scenario visible
 
-JAY's first message (auto-appears):
+Primer's first message (auto-appears):
 
 ```
-👋 Hi! I'm JAY, your AI brief consultant.
+👋 Hi! I'm Primer, your AI Brief Consultant.
 
 I see you're creating a Video Brief for a new product launch.
-I've pulled up your brand context - TechStart Inc, B2B SaaS,
+I've pulled up your Brand Intelligence - TechStart Inc, B2B SaaS,
 enterprise focus.
 
 Let's get this brief done in under 15 minutes. Ready?
@@ -108,8 +145,9 @@ Let's get this brief done in under 15 minutes. Ready?
 **Psychology:**
 
 - ✅ Immediate action (no waiting)
-- ✅ Shows "brand intelligence" feature casually
+- ✅ Shows "Brand Intelligence" feature casually (proper terminology)
 - ✅ Time promise creates urgency
+- ✅ Introduces "AI Brief Consultant" term naturally
 
 Right panel shows:
 
@@ -117,7 +155,7 @@ Right panel shows:
 - Timer starts
 - Completion: 0%
 
-#### STEP 2: Guided Conversation (0:15 - 1:30)
+#### STEP 2: Guided Conversation (0:30 - 1:45)
 
 User can either:
 
@@ -127,18 +165,18 @@ User can either:
 **Quick Demo Mode (Recommended Default):**
 
 ```
-JAY: "What's the main objective of this video?"
+Primer: "What's the main objective of this video?"
 
 [Auto-typed response appears]:
 "We want to showcase our new AI analytics feature to enterprise CTOs"
 
-JAY: "Got it. ✓ Objective captured.
+Primer: "Got it. ✓ Objective captured.
 
 [Right panel updates - "Objective" section fills in real-time]
 
 Who's the primary audience for this video?"
 
-[User sees JAY extracting content live into brief sections]
+[User sees Primer extracting content live into brief sections]
 ```
 
 **WOW FACTOR #1: Live Extraction Animation**
@@ -158,7 +196,7 @@ Who's the primary audience for this video?"
 After 3-4 exchanges:
 
 ```
-JAY: "Perfect! I have enough to complete the brief.
+Primer: "Perfect! I have enough to complete the brief.
 Let me organize everything... ✨"
 
 [Brief sections all fill in with beautiful animation]
@@ -185,35 +223,50 @@ Let me organize everything... ✨"
 - Simple subtraction (no percentages or projections)
 - Focus on experience, not claims
 
-#### STEP 4: Capacity Implication (2:00 - 2:30)
+#### STEP 4: Closing Reframe - Agency Owner Value (2:00 - 2:30)
 
-After time savings reveal:
+**Critical Addition**: Pivot back to agency owner perspective after client experience
 
 ```
-💭 Now imagine doing this for every brief.
-
-What could your team do with all that time?
-• Take on more clients
-• Spend time on strategy instead of admin
-• Scale without hiring
-
-This demo took under 2 minutes.
-Your current process takes hours.
-
-[Want JAY for Your Agency?]
+┌──────────────────────────────────────────────────┐
+│  What You Just Experienced                       │
+├──────────────────────────────────────────────────┤
+│                                                   │
+│  This is what your client just went through:     │
+│  ✓ Natural conversation (not a form)             │
+│  ✓ 2 minutes of their time                       │
+│  ✓ Professional brief delivered to you           │
+│                                                   │
+│  What YOU get from this:                         │
+│  ✓ Complete structured brief                     │
+│  ✓ 3 hours saved per project                     │
+│  ✓ Client context captured in Brand Intelligence │
+│  ✓ Ready to start work immediately               │
+│                                                   │
+│  💭 Now imagine doing this for every brief.      │
+│                                                   │
+│  What could your team do with all that time?     │
+│  • Take on more clients                          │
+│  • Spend time on strategy instead of admin       │
+│  • Scale without hiring                          │
+│                                                   │
+│  [Download Sample Brief] [Join Waitlist]         │
+└──────────────────────────────────────────────────┘
 ```
 
 **Psychology:**
 
+- Reframe: From "I tried a tool" → "I see how this helps MY agency"
+- Dual value: Client experience quality + Owner operational value
+- Connect to desired outcomes: (1) Try with real clients, (2) Transform operations
 - Plant the seed, let THEM do the math
-- Focus on possibility, not promises
-- Emotional connection: "What could you do with that time?"
 - No specific revenue claims (we have no data to back it up)
+- Emphasizes both quality AND speed (primary Version A concerns)
 
 #### STEP 5: Natural Waitlist CTA (2:30)
 
 ```
-Want JAY for your agency?
+Want Primer for your agency?
 
 We're launching to 50 agencies this quarter.
 
@@ -221,7 +274,7 @@ We're launching to 50 agencies this quarter.
 └─ "Get early access + 3 months free"
 
 [No thanks, show me more features]
-└─ Explore: Brand Intelligence | Multi-language | Team collaboration
+└─ Explore: Brand Intelligence | AI Brief Consultant | Workflow Integration
 ```
 
 **Psychology:**
@@ -238,7 +291,7 @@ We're launching to 50 agencies this quarter.
 | Live content extraction | ✅ YES            | Real-time section filling with animation | Core magic - shows automation         |
 | Time tracking           | ✅ YES            | Live timer during demo                   | Reinforces speed value experientially |
 | Speed comparison        | ✅ YES            | "This: 2 min, Typical: 3 hours"          | Relatable, verifiable proof           |
-| Brand intelligence      | ⚠️ Subtle mention | JAY references brand context once        | Don't overcomplicate                  |
+| Brand Intelligence      | ⚠️ Subtle mention | Primer references brand context once     | Don't overcomplicate                  |
 | PDF output              | ✅ YES            | Download button at end                   | Tangible deliverable                  |
 | Template structure      | ✅ YES            | Section checklist visible                | Shows thoroughness                    |
 | ROI Calculator          | ❌ REMOVED        | N/A                                      | No real data to back up claims        |
@@ -270,7 +323,7 @@ We're launching to 50 agencies this quarter.
 Total training cost: $120,000
 Knowledge retained: $0
 
-[See How JAY Captures Knowledge] → /demo
+[See How Primer Captures Knowledge] → /demo
 ```
 
 **Psychology:**
@@ -289,7 +342,7 @@ Knowledge retained: $0
 │  New hire starts Monday. Can they handle clients?   │
 ├─────────────────────────────────────────────────────┤
 │                                                      │
-│  Left: Chat (JAY)       Right: Knowledge Base       │
+│  Left: Chat (Primer)    Right: Knowledge Base       │
 │  ┌──────────────┐       ┌────────────────────┐     │
 │  │ Conversation │       │ 📚 Brand Intel     │     │
 │  │              │       │                     │     │
@@ -330,10 +383,10 @@ Demo loads with dramatic scenario:
 │  New hire Alex starts today.              │
 │  First task: Create brief for Acme Corp.  │
 │                                           │
-│  ❌ Without JAY: Alex is flying blind    │
-│  ✅ With JAY: All knowledge is accessible│
+│  ❌ Without Primer: Alex is flying blind │
+│  ✅ With Primer: All knowledge accessible│
 │                                           │
-│  [Show me how JAY helps]                 │
+│  [Show me how Primer helps]              │
 └──────────────────────────────────────────┘
 ```
 
@@ -345,10 +398,10 @@ Demo loads with dramatic scenario:
 
 #### STEP 2: Knowledge Access Magic (0:20 - 1:00)
 
-JAY appears:
+Primer appears:
 
 ```
-JAY: "Hi Alex! I see you're creating a brief for Acme Corp.
+Primer: "Hi Alex! I see you're creating a brief for Acme Corp.
 
 Good news - I have context from 12 past projects spanning 2 years.
 
@@ -379,7 +432,7 @@ Let me pull up what matters... 🔍"
 │ • Worst: Emotional storytelling     │
 └─────────────────────────────────────┘
 
-JAY: "I'll use all this context while we build
+Primer: "I'll use all this context while we build
 your brief. Just talk to me naturally."
 ```
 
@@ -402,7 +455,7 @@ User (Alex) types or auto-demo:
 ```
 User: "We need a product demo video for their new dashboard feature"
 
-JAY: "Perfect. Based on Acme's preferences [1][2], I recommend:
+Primer: "Perfect. Based on Acme's preferences [1][2], I recommend:
 
 • Keep it under 90 seconds (they hate long videos)
 • Lead with ROI/metrics (their CFO audience expects this)
@@ -416,13 +469,13 @@ Does that direction work for you?"
 
 **WOW FACTOR #2: Contextual Recommendations**
 
-- JAY isn't just capturing info, it's USING past knowledge
+- Primer isn't just capturing info, it's USING past knowledge
 - Citations make it feel researched/credible
 - Shows "AI + institutional memory" power
 
 **Psychology:**
 
-- Expertise signal: "JAY knows this client better than I do"
+- Expertise signal: "Primer knows this client better than I do"
 - Value proof: Context is actually USEFUL, not just stored
 
 #### STEP 4: Insight Discovery (1:45 - 2:15)
@@ -433,7 +486,7 @@ During conversation:
 User: "They mentioned they want to target healthcare verticals now,
 not just finance"
 
-JAY: "Interesting - that's new! 💡
+Primer: "Interesting - that's new! 💡
 
 [Animation - new insight appears in right panel]
 
@@ -485,14 +538,14 @@ Final reveal:
 │  What just happened?                             │
 ├──────────────────────────────────────────────────┤
 │                                                   │
-│  ❌ WITHOUT JAY (Traditional Onboarding):        │
+│  ❌ WITHOUT Primer (Traditional Onboarding):     │
 │  • New hire Alex spends 2 hours researching      │
 │  • Reads through old emails, Slack messages      │
 │  • Finds maybe 20% of context (rest is lost)     │
 │  • First brief needs 3 rounds of revisions       │
 │  • Client notices knowledge gap                  │
 │                                                   │
-│  ✅ WITH JAY (Knowledge Retention):              │
+│  ✅ WITH Primer (Knowledge Retention):           │
 │  • Alex accesses 47 insights instantly           │
 │  • Brief conversation guided by past learnings   │
 │  • First brief approved on first submission      │
@@ -524,7 +577,7 @@ Final reveal:
 | Brand Intelligence   | ✅ YES      | Central to demo, right panel     | Core value prop          |
 | @-mention context    | ⚠️ Mention  | Quick reference, not interactive | Don't overcomplicate     |
 | Insight discovery    | ✅ YES      | Auto-detection, save prompt      | Shows compounding        |
-| Citations [1][2]     | ✅ YES      | Clickable in JAY responses       | Proves context usage     |
+| Citations [1][2]     | ✅ YES      | Clickable in Primer responses    | Proves context usage     |
 | Knowledge categories | ✅ YES      | Organized display                | Shows systematic capture |
 | Time savings         | ❌ Minimal  | Not primary angle                | Don't dilute message     |
 | PDF output           | ⚠️ Optional | Available but not emphasized     | Secondary benefit        |
@@ -541,7 +594,7 @@ Landing Page (/)
 ├─ Hero Section
 │  ├─ Version A: Problem-first messaging (hours → 2 minutes)
 │  └─ Version B: Timeline visual (knowledge loss)
-├─ Single CTA: "See JAY in Action"
+├─ Single CTA: "Experience Primer"
 └─ Click → Demo Gate Form
 
 Demo Gate Form (Interstitial)
@@ -595,7 +648,7 @@ export const demoFlows = {
       project: "New product launch video",
     },
     messages: [
-      { role: "assistant", content: "👋 Hi! I'm JAY...", delay: 0 },
+      { role: "assistant", content: "👋 Hi! I'm Primer...", delay: 0 },
       { role: "assistant", content: "What's the main objective?", delay: 2000 },
       {
         role: "user",

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { scrapeWebsite } from '@/lib/web-scraper'
 import type { PageContent } from '@/lib/web-scraper'
+import { getFallbackData } from '@/lib/fallback-data'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,54 +11,129 @@ const openai = new OpenAI({
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, company, website, teamSize } = body
+    const { website } = body
 
-    // Validate required fields
-    if (!name || !company) {
-      return NextResponse.json(
-        { error: 'Name and company are required' },
-        { status: 400 }
-      )
+    // Use Papers & Pens as fallback if no website provided
+    const websiteUrl = website || 'https://papers-pens.com'
+
+    // Try to scrape the website
+    const scrapedContent = await scrapeWebsite(websiteUrl)
+
+    // If scraping failed, return fallback data
+    if (!scrapedContent) {
+      console.log('Scraping failed, using fallback data')
+      const fallback = getFallbackData(websiteUrl)
+      return NextResponse.json({
+        success: true,
+        context: fallback,
+      })
     }
 
-    let scrapedContent = null
-    let insights: string[] = []
+    // Generate AI-powered insights, brand summary, and brand voice
+    const [insights, brandSummary, brandVoice] = await Promise.all([
+      generateAIInsights(scrapedContent),
+      generateBrandSummary(scrapedContent),
+      generateBrandVoice(scrapedContent),
+    ])
 
-    // If website provided, try to scrape it
-    if (website) {
-      scrapedContent = await scrapeWebsite(website)
-
-      if (scrapedContent) {
-        // Generate AI-powered insights from scraped content
-        insights = await generateAIInsights(scrapedContent, company)
-      }
+    // Use fallback data if AI generation fails
+    if (!brandSummary || insights.length === 0 || !brandVoice) {
+      console.log('AI generation incomplete, using fallback data')
+      const fallback = getFallbackData(websiteUrl)
+      return NextResponse.json({
+        success: true,
+        context: {
+          ...fallback,
+          // Keep scraped brand intelligence if available
+          brandIntelligence: scrapedContent.brandIntelligence,
+        },
+      })
     }
 
-    // Fallback: Generate generic insights if no website or scraping failed
-    if (insights.length === 0) {
-      insights = generateGenericInsights(company, teamSize)
-    }
-
-    // Return demo context
+    // Return complete context with brand intelligence
     return NextResponse.json({
       success: true,
       context: {
-        name,
-        company,
-        teamSize,
-        hasWebsite: !!scrapedContent,
-        brandContext: scrapedContent
-          ? `${scrapedContent.title} - ${scrapedContent.description}`
-          : `${company} - Professional agency`,
+        website: websiteUrl,
+        brandSummary,
         insights,
+        brandVoice,
+        brandIntelligence: scrapedContent.brandIntelligence,
       },
     })
   } catch (error) {
     console.error('Error generating context:', error)
-    return NextResponse.json(
-      { error: 'Failed to generate context' },
-      { status: 500 }
-    )
+
+    // Return fallback on any error
+    const fallback = getFallbackData('')
+    return NextResponse.json({
+      success: true,
+      context: fallback,
+    })
+  }
+}
+
+/**
+ * Generate brand summary from scraped content
+ */
+async function generateBrandSummary(
+  scrapedContent: PageContent
+): Promise<string> {
+  try {
+    if (!process.env.OPENAI_API_KEY) {
+      console.warn('OpenAI API key not found')
+      return ''
+    }
+
+    // Combine content for analysis
+    const pageText = [
+      scrapedContent.title,
+      scrapedContent.description,
+      ...scrapedContent.headings.slice(0, 10),
+      ...scrapedContent.paragraphs.slice(0, 10),
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const prompt = `Analyze this website and create a concise brand summary.
+
+Website: ${scrapedContent.url}
+Title: ${scrapedContent.title}
+Description: ${scrapedContent.description}
+
+Content:
+${pageText.slice(0, 4000)}
+
+Create a 1-2 sentence brand summary that captures:
+1. What they do (products/services)
+2. Who they serve (target audience)
+3. Their unique positioning (what makes them different)
+
+Examples:
+- "Papers & Pens is a product marketing agency helping B2B/SaaS brands grow through expert positioning, messaging, and go-to-market strategies."
+- "Stripe is a payment infrastructure platform for online businesses, offering developers powerful APIs to handle payments globally."
+- "Notion is an all-in-one workspace combining notes, tasks, and databases, helping teams organize knowledge and collaborate seamlessly."
+
+Return ONLY the summary. No explanations. Keep it natural and conversational.`
+
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [
+        {
+          role: 'system',
+          content:
+            'You are a brand strategist creating concise, accurate brand summaries from website content. Focus on clarity and positioning.',
+        },
+        { role: 'user', content: prompt },
+      ],
+      temperature: 0.7,
+      max_tokens: 150,
+    })
+
+    return completion.choices[0]?.message?.content?.trim() || ''
+  } catch (error) {
+    console.error('Error generating brand summary:', error)
+    return ''
   }
 }
 
@@ -65,14 +141,12 @@ export async function POST(request: Request) {
  * Generate AI-powered insights from scraped content
  */
 async function generateAIInsights(
-  scrapedContent: PageContent,
-  company: string
+  scrapedContent: PageContent
 ): Promise<string[]> {
   try {
-    // If no OpenAI key, fallback to pattern-matching
     if (!process.env.OPENAI_API_KEY) {
-      console.warn('OpenAI API key not found, using fallback insights')
-      return generateInsightsFromContent(scrapedContent, company)
+      console.warn('OpenAI API key not found')
+      return []
     }
 
     // Combine all content
@@ -86,30 +160,30 @@ async function generateAIInsights(
       .join(' ')
 
     // Build prompt for AI
-    const prompt = `CONTEXT: You are JAY, an AI assistant that helps agencies gather content briefs from their clients through conversation. You're analyzing a ${scrapedContent.language === 'vi' ? 'Vietnamese' : 'English'} agency's website to generate insights from "previous brief sessions" with similar agencies.
+    const prompt = `CONTEXT: You are Primer, an AI assistant that helps agencies gather content briefs from their clients through conversation. You're analyzing a ${scrapedContent.language === 'vi' ? 'Vietnamese' : 'English'} website to generate insights from "previous brief sessions" with similar brands.
 
-These insights will be shown during a demo to prove JAY understands the agency's industry context.
+These insights will be shown during a demo to prove Primer understands the brand's industry context.
 
-Company: ${company}
+Website: ${scrapedContent.url}
 Language: ${scrapedContent.language}
 
 Page Content:
 ${pageText.slice(0, 3000)}
 
-Generate 5-6 brief, conversational insights that sound like notes from past brief gathering sessions with similar agencies—NOT research reports or analysis.
+Generate 5-6 brief, conversational insights that sound like notes from past brief gathering sessions with similar brands—NOT research reports or analysis.
 
 IMPORTANT: Make them sound conversational and natural:
 
 1. DATA-DRIVEN (include realistic stats):
    - Example: "Similar clients see 2.3x better results with case studies that include video testimonials"
-   - Example: "Most agencies in this space get 40% higher engagement posting Tuesday-Thursday mornings"
+   - Example: "Most brands in this space get 40% higher engagement posting Tuesday-Thursday mornings"
 
 2. CLIENT VOICE (what clients actually said):
    - Example: "Clients often mention: 'We need quick turnaround, perfection can wait'"
    - Example: "Common request: 'Keep it simple—our audience hates jargon'"
 
 3. PATTERN OBSERVATIONS:
-   - Example: "B2B SaaS buyers typically compare 3-5 agencies before deciding"
+   - Example: "B2B SaaS buyers typically compare 3-5 vendors before deciding"
    - Example: "Decision-makers in this industry are usually 35-50, value proven ROI over flashy design"
 
 4. POSITIONING NOTES:
@@ -125,7 +199,7 @@ Make insights:
 
 Return ONLY a JSON array of strings. No explanations.
 
-Example format: ["Clients in this space prefer ROI-focused case studies over design portfolios", "Similar agencies see 45% higher conversions with clear pricing upfront", "Common feedback: 'We value expertise over flashy presentations'"]`
+Example format: ["Clients in this space prefer ROI-focused case studies over design portfolios", "Similar brands see 45% higher conversions with clear pricing upfront", "Common feedback: 'We value expertise over flashy presentations'"]`
 
     // Call OpenAI
     const completion = await openai.chat.completions.create({
@@ -134,7 +208,7 @@ Example format: ["Clients in this space prefer ROI-focused case studies over des
         {
           role: 'system',
           content:
-            'You are JAY, an AI brief gathering assistant for agencies. You generate conversational insights that sound like notes from real client brief sessions—not formal reports. Mix client quotes, data patterns, and industry observations. Keep it natural and concise (10-20 words). Always return ONLY valid JSON arrays with no additional text.',
+            'You are Primer, an AI brief gathering assistant for agencies. You generate conversational insights that sound like notes from real client brief sessions—not formal reports. Mix client quotes, data patterns, and industry observations. Keep it natural and concise (10-20 words). Always return ONLY valid JSON arrays with no additional text.',
         },
         {
           role: 'user',
@@ -162,70 +236,72 @@ Example format: ["Clients in this space prefer ROI-focused case studies over des
     return insights.slice(0, 6)
   } catch (error) {
     console.error('Error generating AI insights:', error)
-    // Fallback to pattern-matching if AI fails
-    return generateInsightsFromContent(scrapedContent, company)
+    return []
   }
 }
 
 /**
- * Fallback: Generate insights from scraped content using pattern matching
+ * Generate brand voice analysis from scraped content
  */
-function generateInsightsFromContent(scrapedContent: PageContent, company: string): string[] {
-  const insights: string[] = []
-  const content = scrapedContent
+async function generateBrandVoice(
+  scrapedContent: PageContent
+): Promise<string> {
+  try {
+    if (!process.env.OPENAI_API_KEY) {
+      console.warn('OpenAI API key not found')
+      return ''
+    }
 
-  // Insight 1: Company positioning (from title/description)
-  if (content.description) {
-    insights.push(
-      `${company} focuses on: ${content.description.slice(0, 100)}${content.description.length > 100 ? '...' : ''}`
-    )
+    // Combine content for analysis
+    const pageText = [
+      scrapedContent.title,
+      scrapedContent.description,
+      ...scrapedContent.headings.slice(0, 8),
+      ...scrapedContent.paragraphs.slice(0, 8),
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const prompt = `Analyze this website's brand voice and communication style.
+
+Website: ${scrapedContent.url}
+Title: ${scrapedContent.title}
+Description: ${scrapedContent.description}
+
+Content Sample:
+${pageText.slice(0, 3000)}
+
+Analyze the brand voice by identifying:
+1. Tone (e.g., professional, casual, friendly, authoritative, playful)
+2. Language style (e.g., technical, simple, conversational, formal)
+3. Key characteristics (e.g., direct, empathetic, bold, minimalist)
+
+Return a single 1-2 sentence description that captures how this brand communicates.
+
+Examples:
+- "Direct, confident, and expertise-driven. Uses clear language without jargon, focuses on practical outcomes."
+- "Friendly and approachable with a professional edge. Balances warmth with expertise, using conversational language."
+- "Bold and minimalist. Emphasizes simplicity and clarity with short, punchy statements."
+
+Return ONLY the brand voice description. No labels, no explanations.`
+
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content:
+            'You are a brand strategist analyzing communication style from website content. Focus on tone, language patterns, and messaging approach. Be concise and specific.',
+        },
+        { role: 'user', content: prompt },
+      ],
+      temperature: 0.7,
+      max_tokens: 100,
+    })
+
+    return completion.choices[0]?.message?.content?.trim() || ''
+  } catch (error) {
+    console.error('Error generating brand voice:', error)
+    return ''
   }
-
-  // Insight 2: Key services/offerings (from headings)
-  if (content.headings.length > 0) {
-    const services = content.headings.slice(0, 3).join(', ')
-    insights.push(`Core services mentioned: ${services}`)
-  }
-
-  // Insight 3: Brand tone (simple analysis of language)
-  const allText = [content.title, content.description, ...content.paragraphs.slice(0, 3)].join(' ')
-  if (allText.toLowerCase().includes('professional') || allText.toLowerCase().includes('expert')) {
-    insights.push('Brand voice: Professional and expertise-driven')
-  } else if (
-    allText.toLowerCase().includes('creative') ||
-    allText.toLowerCase().includes('innovative')
-  ) {
-    insights.push('Brand voice: Creative and innovative')
-  } else {
-    insights.push('Brand voice: Clear and approachable')
-  }
-
-  // Insight 4: Target audience (if mentioned)
-  if (allText.toLowerCase().includes('b2b') || allText.toLowerCase().includes('business')) {
-    insights.push('Target audience: B2B businesses')
-  } else if (allText.toLowerCase().includes('enterprise')) {
-    insights.push('Target audience: Enterprise clients')
-  }
-
-  // Ensure we have at least 4-6 insights
-  while (insights.length < 4) {
-    insights.push(`${company} specializes in delivering high-quality agency services`)
-  }
-
-  return insights.slice(0, 6) // Max 6 insights
-}
-
-/**
- * Generate generic insights when no website is provided
- */
-function generateGenericInsights(company: string, teamSize: number): string[] {
-  const size = teamSize <= 3 ? 'boutique' : teamSize <= 10 ? 'growing' : 'established'
-
-  return [
-    `${company} is a ${size} agency focused on delivering quality work`,
-    'Target clients: Businesses seeking professional content and creative services',
-    'Brand voice: Professional and results-oriented',
-    'Team structure: Collaborative and client-focused',
-    'Service approach: Strategic and detail-oriented',
-  ]
 }
