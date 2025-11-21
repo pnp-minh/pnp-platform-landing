@@ -1,5 +1,5 @@
-import { DemoHeader, DemoProvider } from "@/components/demo/animated-chat-demo";
 import { SectionTag } from "@/components/ui/section-tag";
+import Image from "next/image";
 
 const features = [
   {
@@ -25,7 +25,7 @@ const features = [
   },
 ];
 
-export function SolutionsSection() {
+export function HowItWorksSection() {
   return (
     <section
       id="how-it-works"
@@ -46,19 +46,16 @@ export function SolutionsSection() {
         {/* Content */}
         <div className="flex w-full flex-col gap-6">
           {/* UI Preview Card */}
-          <DemoProvider>
-            <div className="flex w-full flex-col rounded-3xl bg-primary-3 md:min-h-[500px] lg:h-[500px] lg:flex-row lg:items-center lg:justify-center lg:gap-[182px] lg:overflow-hidden">
-              {/* Left Side - Demo Header and Container */}
-              <div className="flex h-full w-full flex-col gap-6 p-6 md:gap-8 md:p-10 lg:w-[521px] lg:shrink-0 lg:justify-center lg:p-0">
-                <DemoHeader />
-              </div>
-
-              {/* Right Side - Animated Chat Messages */}
-              <div className="flex w-full flex-col items-end justify-center gap-6 p-6 md:gap-8 md:p-8 lg:w-[457px] lg:shrink-0 lg:p-0">
-                {/* <DemoMessages /> */}
-              </div>
-            </div>
-          </DemoProvider>
+          <div className="flex relative w-full flex-col rounded-3xl bg-primary-3 md:min-h-[500px] lg:h-[500px] lg:flex-row lg:items-center lg:justify-center lg:gap-[182px] lg:overflow-hidden">
+            <Image
+              src="/images/how-it-work.png"
+              alt="How it work"
+              fill
+              sizes="(max-width: 1024px) 100vw, 628px"
+              className="object-contain"
+              priority
+            />
+          </div>
 
           {/* Feature Cards */}
           <div className="flex w-full flex-col gap-5 md:gap-6 lg:flex-row lg:gap-6">
@@ -74,7 +71,7 @@ export function SolutionsSection() {
                     </h3>
                     <h3
                       className="text-xl font-medium leading-tight tracking-[-0.8px] text-text-primary md:text-[22px] md:tracking-[-0.88px]"
-                      style={{ textWrap: 'balance' } as React.CSSProperties}
+                      style={{ textWrap: "balance" } as React.CSSProperties}
                     >
                       {feature.title}
                     </h3>

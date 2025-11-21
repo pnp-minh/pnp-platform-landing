@@ -44,7 +44,7 @@ export function BrandIntelligencePreview({
         {/* Bento Grid - 2x2 Layout */}
         <div className="mb-8 grid gap-4 md:grid-cols-2 md:gap-6">
           {/* Logo Card */}
-          <div className="flex flex-col items-start rounded-2xl bg-gray-2 p-6 md:p-8">
+          <div className="flex flex-col items-start rounded-2xl bg-gray-2 p-6">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-12">
               Logo
             </h3>
@@ -92,8 +92,8 @@ export function BrandIntelligencePreview({
           </div>
 
           {/* Brand Summary Card */}
-          <div className="flex flex-col items-start rounded-2xl bg-gray-2 p-6 md:p-8">
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-12">
+          <div className="flex flex-col items-start rounded-2xl bg-gray-2 p-6">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-12">
               About This Brand
             </h3>
             <p className="text-sm leading-relaxed text-gray-11">
@@ -103,7 +103,7 @@ export function BrandIntelligencePreview({
 
           {/* Brand Voice Card */}
           <div className="flex flex-col items-start rounded-2xl bg-gray-2 p-6">
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-12">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-12">
               Brand Voice
             </h3>
             <p className="text-sm leading-relaxed text-gray-11">

@@ -4,9 +4,9 @@ import type { Variant } from "@/lib/getVariant";
 import type { BrandIntelligence } from "@/lib/web-scraper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { usePostHog } from "posthog-js/react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useDemoStore } from "@/lib/stores/demo-store";
 
 import {
   Form,
@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { DemoLoadingProgress } from "./demo-loading-progress";
 import { BrandIntelligencePreview } from "./brand-intelligence-preview";
+import { DemoChatInterface } from "./demo-chat-interface";
 
 interface DemoGateFormProps {
   variant: Variant;
@@ -47,10 +48,14 @@ type DemoContext = {
 
 export function DemoGateForm({ variant }: DemoGateFormProps) {
   const posthog = usePostHog();
-  const [phase, setPhase] = useState<
-    "form" | "loading" | "preview" | "demo"
-  >("form");
-  const [demoContext, setDemoContext] = useState<DemoContext | null>(null);
+
+  // Use Zustand store for state management with sessionStorage persistence
+  const phase = useDemoStore((state) => state.phase);
+  const setPhase = useDemoStore((state) => state.setPhase);
+  const demoContext = useDemoStore((state) => state.demoContext);
+  const setDemoContext = useDemoStore((state) => state.setDemoContext);
+  const getCachedBrandData = useDemoStore((state) => state.getCachedBrandData);
+  const setCachedBrandData = useDemoStore((state) => state.setCachedBrandData);
 
   const form = useForm<FormValues>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -72,6 +77,16 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
         used_fallback: !values.website,
       });
 
+      // Check cache first to avoid expensive re-scraping
+      const cachedData = getCachedBrandData(websiteUrl);
+
+      if (cachedData) {
+        console.log("Using cached brand data for:", websiteUrl);
+        setDemoContext(cachedData);
+        setPhase("loading"); // Still show loading for UX consistency
+        return;
+      }
+
       // Show loading phase
       setPhase("loading");
 
@@ -90,16 +105,19 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
 
       const data = await response.json();
 
-      // Store context
+      // Store context in Zustand (automatically persists to sessionStorage)
       setDemoContext(data.context);
-      sessionStorage.setItem("demoContext", JSON.stringify(data.context));
+
+      // Cache the brand data by URL to avoid re-scraping
+      setCachedBrandData(websiteUrl, data.context);
 
       // Move to preview phase (loading component will trigger this via onComplete)
     } catch (error) {
       console.error("Error submitting form:", error);
       // Still allow demo to proceed with fallback
+      const websiteUrl = values.website || "https://papers-pens.com";
       const fallbackContext: DemoContext = {
-        website: values.website || "https://papers-pens.com",
+        website: websiteUrl,
         brandSummary:
           "Papers & Pens is a product marketing agency helping B2B/SaaS brands grow through expert positioning, messaging, and go-to-market strategies.",
         insights: [
@@ -114,7 +132,7 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
         },
       };
       setDemoContext(fallbackContext);
-      sessionStorage.setItem("demoContext", JSON.stringify(fallbackContext));
+      setCachedBrandData(websiteUrl, fallbackContext);
       // Move to preview phase
     }
   };
@@ -145,16 +163,24 @@ export function DemoGateForm({ variant }: DemoGateFormProps) {
           // Track preview viewed and demo started
           posthog.capture("demo_preview_completed", { variant });
           posthog.capture("demo_chat_started", { variant });
-          // Move to demo phase
-          setPhase("demo");
+          // Move to chat phase
+          setPhase("chat");
         }}
       />
     );
   }
 
-  // Demo phase - hide form completely (demo component will show)
-  if (phase === "demo") {
-    return null;
+  // Chat phase - show interactive demo chat interface
+  if (phase === "chat" && demoContext) {
+    return (
+      <DemoChatInterface
+        website={demoContext.website}
+        brandSummary={demoContext.brandSummary}
+        brandVoice={demoContext.brandVoice}
+        brandIntelligence={demoContext.brandIntelligence}
+        insights={demoContext.insights}
+      />
+    );
   }
 
   // Form phase - show initial form

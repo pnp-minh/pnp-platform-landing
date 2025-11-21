@@ -1,5 +1,5 @@
-import { SolutionDemo } from "@/components/demo/solution-demo";
 import { SectionTag } from "@/components/ui/section-tag";
+import Image from "next/image";
 
 const benefits = [
   {
@@ -76,7 +76,15 @@ export function BenefitsSection() {
 
           {/* Demo Preview */}
           <div className="h-[400px] w-full md:h-[500px] xl:h-full xl:w-[845px]">
-            <SolutionDemo />
+            <Image
+              src="/images/3x-speed.png"
+              alt="3x speed illustration"
+              width={845}
+              height={499}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 845px"
+              className="h-full w-full rounded-3xl object-contain"
+              priority
+            />
           </div>
         </div>
       </div>

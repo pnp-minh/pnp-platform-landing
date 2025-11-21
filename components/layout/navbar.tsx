@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Menu } from "lucide-react";
+import Link from "next/link";
 
 const navLinks = [
   { href: "#product", label: "Product" },
@@ -21,9 +22,12 @@ export function Navbar() {
     <nav className="relative flex items-center justify-between bg-[#FFFAF6] px-5 py-4 md:px-10 lg:grid lg:grid-cols-3 lg:px-20">
       {/* Logo - Left */}
       <div className="flex items-center justify-start gap-2">
-        <p className="text-2xl font-semibold leading-normal tracking-[-0.72px] text-black">
+        <Link
+          href="/"
+          className="text-2xl font-semibold leading-normal tracking-[-0.72px] text-black"
+        >
           Primer
-        </p>
+        </Link>
       </div>
 
       {/* Navigation Links - Desktop */}
